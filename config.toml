@@ -21,7 +21,7 @@ pygmentsUseClasses = true
   posts = "/:year/:month/:title/"
 
 # Google Analytics API key.
-googleAnalytics = "Your Google Analytics tracking id"
+googleAnalytics = "UA-178248470-1"
 
 [params]
   paginate = 10
