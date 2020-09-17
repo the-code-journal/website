@@ -40,7 +40,15 @@
   {{ hugo.Generator -}}
 
   {{ if not .Site.IsServer }}
-  {{ template "_internal/google_analytics_async.html" . }}
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-178248470-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-178248470-1');
+  </script>
   {{ end }}
 
   <link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css" />
