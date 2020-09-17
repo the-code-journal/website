@@ -1,0 +1,106 @@
+baseurl = "/"
+languageCode = "en-us"
+Title = "Coding Journal"
+# Copyright notice. This is displayer in the footer.
+copyright = "&copy; Copyright notice"
+pygmentsUseClasses = true
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "monokai"
+    tabWidth = 4
+
+[permalinks]
+  posts = "/:year/:month/:title/"
+
+# Google Analytics API key.
+googleAnalytics = "Your Google Analytics tracking id"
+
+[params]
+  paginate = 10
+  custom_css = ["/css/custom.css"]
+
+  # Social accounts. Link to these accounts are displayed in the header and footer
+  #twitter = "Your Twitter username"
+  #facebook = "Your Facebook username"
+  #instagram = "Your Instagram username"
+  github = "the-code-journal"
+  #gitlab = "Your GitLab username"
+  #npm = "Your npm username"
+  #codepen = "Your CodePen username"
+  #dribbble = "Your Dribbble username"
+  #fivehundredpx = "Your 500px username" # 500px
+  #flickr = "Your Flickr username"
+  #pinterest = "Your Pinterest username"
+  #tumblr = "Your Tumblr username"
+  #vimeo = "Your Vimeo username"
+  youtube = "UClqfzuMz3J_c0iNG5QlGReg"
+  #linkedin = "Your LinkedIn username"
+  #medium = "Your Medium username"
+
+  # Disqus shortname
+  disqus = ""
+  author = ""
+  authorwebsite = ""
+  avatar = ""
+  contact = ""
+  bio = ""
+
+  # Short subtitle/tagline. This is displayed in the header.
+  subtitle = ""
+
+  # Logo image. This is displayed ogp image.
+  logo = "/path/to/logo"
+  favicon = "/path/to/favicon"
+
+[[menu.main]]
+    name = "Blog"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "About"
+    url = "/about"
+    weight = 2
+
+[[menu.main]]
+    name = "Theme"
+    url = "/theme"
+    weight = 3
+
+[[menu.main]]
+    name = "Tags"
+    url = "/tags"
+    weight = 4
+
+[related]
+  # Only include matches with rank >= threshold. This is a normalized rank between 0 and 100.
+  threshold = 80
+
+  # To get stable "See also" sections we, by default, exclude newer related pages.
+  includeNewer = false
+
+  # Will lower case keywords in both queries and in the indexes.
+  toLower = false
+
+  [[related.indices]]
+  name = "keywords"
+  weight = 150
+  [[related.indices]]
+  name  = "author"
+  toLower = true
+  weight = 30
+  [[related.indices]]
+  name  = "tags"
+  weight = 100
+  [[related.indices]]
+  name  = "date"
+  weight = 10
+  pattern = "2017"
