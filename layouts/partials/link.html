@@ -142,10 +142,20 @@
   {{ end }}
   {{ with ($.Param "youtube") }}
   <li class="c-links__item">
-    <a href="https://www.youtube.com/user/{{ . }}" target="_blank">
+    <a href="https://www.youtube.com/channel/{{ . }}" target="_blank">
       <svg viewBox="0 0 64 64" class="c-links__icon">
         <title>youtube</title>
         <use xlink:href="#icon-youtube"></use>
+      </svg>
+    </a>
+  </li>
+  {{ end }}
+  {{ with ($.Param "quora") }}
+  <li class="c-links__item">
+    <a href="https://www.quora.com/profile/{{ . }}" target="_blank">
+      <svg viewBox="0 0 64 64" class="c-links__icon">
+        <title>quora</title>
+        <use xlink:href="#icon-quora"></use>
       </svg>
     </a>
   </li>

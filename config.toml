@@ -1,6 +1,6 @@
 baseurl = "/"
 languageCode = "en-us"
-Title = "Coding Journal"
+Title = "The Code Journal"
 # Copyright notice. This is displayer in the footer.
 copyright = "&copy; Copyright notice"
 pygmentsUseClasses = true
@@ -19,9 +19,6 @@ pygmentsUseClasses = true
 
 [permalinks]
   posts = "/:year/:month/:title/"
-
-# Google Analytics API key.
-googleAnalytics = "UA-178248470-1"
 
 [params]
   paginate = 10
@@ -44,6 +41,7 @@ googleAnalytics = "UA-178248470-1"
   youtube = "UClqfzuMz3J_c0iNG5QlGReg"
   #linkedin = "Your LinkedIn username"
   #medium = "Your Medium username"
+  quora = "Code-Journal"
 
   # Disqus shortname
   disqus = ""
@@ -69,11 +67,6 @@ googleAnalytics = "UA-178248470-1"
     name = "About"
     url = "/about"
     weight = 2
-
-[[menu.main]]
-    name = "Theme"
-    url = "/theme"
-    weight = 3
 
 [[menu.main]]
     name = "Tags"

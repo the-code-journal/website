@@ -38,7 +38,7 @@ You can also watch the videos here.
 
 
 
-
+{{< articlead >}}
 
 ## Creating a Simple Maven Project
 
@@ -146,7 +146,7 @@ Now, that the project is created, let's see the files that have been created. A 
 
 
 
-
+{{< articlead >}}
 
 ## Building the Project
 
