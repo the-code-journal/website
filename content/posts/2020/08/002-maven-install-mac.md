@@ -33,7 +33,7 @@ Let me walk you through these steps in detail for a Mac system.
 
 
 
-
+{{< articlead >}}
 
 ### 1. Downloading the Apache Maven
 
@@ -47,24 +47,25 @@ You can use your browser to download these, or you can use the `wget` or `curl` 
 
 Here is the command using the `wget` that download the zip file and the corresponding checksum file.
 
-```
--> wget -q \
-     --show-progress https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip
+{{< rawhtml >}}
+<pre class="code-output">
+-> wget -q --show-progress https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip
 
 apache-maven-3.6.3-bin.zip            100%[============================>]   9.16M  13.5MB/s    in 0.7s    
 
--> wget -q \
-     --show-progress https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip.sha512
+-> wget -q --show-progress https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip.sha512
 apache-maven-3.6.3-bin.zip.sha512     100%[============================>]     128  --.-KB/s    in 0s
 
 -> ls -l
 total 9384
 -rw-rw-r-- 1 codejournal codejournal 9602303 Nov 19  2019 apache-maven-3.6.3-bin.zip
 -rw-rw-r-- 1 codejournal codejournal     128 Nov 19  2019 apache-maven-3.6.3-bin.zip.sha512
-```
+</pre>
+{{< /rawhtml >}}
 
 
 
+{{< articlead >}}
 
 ### 2. Extracting the Binary archive File
 
@@ -141,7 +142,7 @@ Here is how you will create a symbolic link.
 
 
 
-
+{{< articlead >}}
 
 ### Configure the Environment Variables
 
