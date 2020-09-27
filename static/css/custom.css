@@ -27,3 +27,8 @@
     color: #599347;
     font-size: 1.6rem;
 }
+
+.image img {
+    display: block;
+    margin: auto auto;
+}

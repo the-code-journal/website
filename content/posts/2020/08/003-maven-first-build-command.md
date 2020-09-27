@@ -1,7 +1,7 @@
 ---
 date: 2020-08-04
 linktitle: First Build with Apache Maven - Command Prompt
-next: /2020/08/install-apache-maven-on-linux/
+next: /2020/08/maven-co-ordinates-and-depedendency-management/
 prev: /2020/08/install-apache-maven-on-mac/
 title: First Build with Apache Maven - Command Prompt
 weight: 10
