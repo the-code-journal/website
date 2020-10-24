@@ -1,7 +1,7 @@
 ---
 date: 2020-08-22
 linktitle: Maven Co-ordinates and Depedendency Management
-next: /2020/08/install-apache-maven-on-linux/
+next: /2020/08/maven-dependency-types-direct-and-transitive/
 prev: /2020/08/first-build-with-apache-maven-command-prompt/
 title: Maven Co-ordinates and Depedendency Management
 weight: 10
