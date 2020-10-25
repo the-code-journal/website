@@ -1,7 +1,7 @@
 ---
 date: 2020-08-31
 linktitle: Maven Dependency Scopes
-next: /2020/08/install-apache-maven-on-linux/
+next: /2020/09/maven-project-structure/
 prev: /2020/08/maven-dependency-types-direct-and-transitive/
 title: Maven Dependency Scopes
 weight: 10
@@ -14,7 +14,6 @@ Maven Dependency Scopes determine when a dependency is included in a classpath, 
 Here is the video explaining these.
 
 {{< yt "https://www.youtube.com/embed/wOLS7iyvbTo" >}}
-
 
 
 
