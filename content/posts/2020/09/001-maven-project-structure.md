@@ -1,7 +1,7 @@
 ---
 date: 2020-09-03
 linktitle: Maven Dependency Scopes
-next: /2020/08/install-apache-maven-on-linux/
+next: /2020/09/maven-project-object-model/
 prev: /2020/08/maven-dependency-scopes/
 title: Maven Project Structure
 weight: 10
@@ -69,7 +69,7 @@ Let’s see how `src` folder is laid out, to store the files.
 
 ## Source Code Files
 
-For all f your Application code files, they need to be placed inside the `main` directory of `src`. Within the `main` directory, you need to put the files inside the language specific folder.
+For all of your Application code files, they need to be placed inside the `main` directory of `src`. Within the `main` directory, you need to put the files inside the language specific folder.
 
 So, your java files will be stored in `src/main/java` and your `scala` or `kotlin` files will be stored at `src/main/scala` or `src/main/kotlin` respectively.
 
