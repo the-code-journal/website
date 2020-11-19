@@ -1,7 +1,7 @@
 ---
 date: 2020-09-10
 linktitle: Maven Dependency Scopes
-next: /2020/08/install-apache-maven-on-linux/
+next: /2020/11/maven-lifecycles/
 prev: /2020/09/maven-project-structure/
 title: Maven Project Object Model
 weight: 10
