@@ -423,16 +423,19 @@ pre {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-    font-size: 1.6rem;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #000;
+    font-size: 2.4rem;
 }
 th,
 td {
-    padding: 8px;
-    border: 1px solid #eee;
+    padding: 8px 24px;
+    border: 1px solid rgb(231, 215, 215);
 }
 th {
-    background-color: #fafafa;
-    font-weight: normal;
+    font-size: 3rem;
+    font-weight: bold;
 }
 del {
     color: #999;

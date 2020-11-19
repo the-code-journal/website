@@ -6,6 +6,10 @@ copyright = "&copy; Copyright notice"
 pygmentsUseClasses = true
 
 [markup]
+  defaultMarkdownHandler = "goldmark"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
   [markup.highlight]
     codeFences = true
     guessSyntax = false
