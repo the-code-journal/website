@@ -1,7 +1,7 @@
 ---
 date: 2020-11-18
 linktitle: Maven Lifecycles
-next: /2020/08/install-apache-maven-on-linux/
+next: 2020/11/maven-lifecycle-phase-mapping-to-plugin-goals/
 prev: /2020/09/maven-project-object-model/
 title: Maven Lifecycles
 weight: 10
