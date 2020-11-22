@@ -131,7 +131,7 @@ Similarly, if you want to execute all the phases of `clean` lifecycle, you will 
 The most familiar and elaborate lifecycle is `default`. It is the build lifecycle of the project. Any build tasks that Maven will execute to build your project, will be executed in one of the phases of `default` lifecycle.
 
 The phases in this lifecycle can be categorized as -
-- **Validation** - validates that the project is correct and all necessary information is available to complete a build
+- **Setup** - phases to let you set up the project for building
 - **Compilation** - phases related to generation, processing and compilation of application class files
 - **Testing** - phases related to generation, processing, compilation and unit testing of application
 - **Packaging** - phases related packaging the application
