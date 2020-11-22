@@ -146,7 +146,7 @@ The first phase of default lifecycle is `validate`. This phase is intended for v
 
 This phase is not linked to any plugin by default since projects can have very varied validation requirements. You could, for example, do some style checks during validation phase by configuring a style check plugin in this phase.
 
-The next phase in the setup category is `initialize`. This phase is intended to initialize your build. A lot of times people configure `maven-clean-plugin` to this phase so that they don’t have to explicitly run the clean lifecycle. You can also initialize some environment variables if you like or any similar task, that is essential for the build in later phases.
+The next phase in the setup category is `initialize`. This phase is intended to initialize your build. A lot of times people configure `maven-clean-plugin` to this phase so that they don’t have to explicitly run the clean lifecycle. You can initialize some build properties or create some additional directories or any similar task, that is essential for the build in later phases.
 
 
 
