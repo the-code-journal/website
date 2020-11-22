@@ -131,7 +131,7 @@ Similarly, if you want to execute all the phases of `clean` lifecycle, you will 
 The most familiar and elaborate lifecycle is `default`. It is the build lifecycle of the project. Any build tasks that Maven will execute to build your project, will be executed in one of the phases of `default` lifecycle.
 
 The phases in this lifecycle can be categorized as -
-- **Validation** - validates that the project is correct and all necessary information is available to complete a build
+- **Setup** - phases to let you set up the project for building
 - **Compilation** - phases related to generation, processing and compilation of application class files
 - **Testing** - phases related to generation, processing, compilation and unit testing of application
 - **Packaging** - phases related packaging the application
@@ -144,7 +144,9 @@ The phases in this lifecycle can be categorized as -
 
 The first phase of default lifecycle is `validate`. This phase is intended for validation of the project, that it is correct and all necessary information is available to complete a build.
 
-This phase is not linked to any plugin by default since projects can have very varied validation requirements. You could, for example, do some style checks during validation phase by configuring a style check plugin in this phase. 
+This phase is not linked to any plugin by default since projects can have very varied validation requirements. You could, for example, do some style checks during validation phase by configuring a style check plugin in this phase.
+
+The next phase in the setup category is `initialize`. This phase is intended to initialize your build. A lot of times people configure `maven-clean-plugin` to this phase so that they don’t have to explicitly run the clean lifecycle. You can initialize some build properties or create some additional directories or any similar task, that is essential for the build in later phases.
 
 
 
@@ -184,6 +186,7 @@ The next set of phases in order relates to testing of the application. Here are 
 - `generate-test-resources`
 - `process-test-resources`
 - `test-compile`
+- `process-test-classses`
 - `test`
 
 The phases here are very similar to compilation phases, only that everything happens with respect to test classes.
@@ -192,7 +195,7 @@ The phases here are very similar to compilation phases, only that everything hap
 
 `generate-test-resources` and `process-test-resources`, similarly does the generation of test resources and processing them.
 
-Before we can run our tests, we need to compile the test source code in the `test-compile` phase and finally, tests are run in the `test` phase.
+Before we can run our tests, we need to compile the test source code in the `test-compile` phase, any additional processing on the test classes is done in `process-test-classes` phase and finally, tests are run in the `test` phase.
 
 
 
