@@ -186,6 +186,7 @@ The next set of phases in order relates to testing of the application. Here are 
 - `generate-test-resources`
 - `process-test-resources`
 - `test-compile`
+- `process-test-classses`
 - `test`
 
 The phases here are very similar to compilation phases, only that everything happens with respect to test classes.
@@ -194,7 +195,7 @@ The phases here are very similar to compilation phases, only that everything hap
 
 `generate-test-resources` and `process-test-resources`, similarly does the generation of test resources and processing them.
 
-Before we can run our tests, we need to compile the test source code in the `test-compile` phase and finally, tests are run in the `test` phase.
+Before we can run our tests, we need to compile the test source code in the `test-compile` phase, any additional processing on the test classes is done in `process-test-classes` phase and finally, tests are run in the `test` phase.
 
 
 
