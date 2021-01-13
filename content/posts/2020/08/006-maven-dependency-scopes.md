@@ -208,7 +208,7 @@ For example, we have a team’s pom defining a list of dependency as part of tea
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/006-maven-scopes/maven-scope-import.png" alt="Maven Scope Import Example" />
+    <img src="/images/2020/08/006-maven-scopes/maven-scope-import.png" alt="Maven Scope Import Example" />
 </div>
 {{< /rawhtml >}}
 
@@ -224,7 +224,7 @@ Here is the reference table for quick reference.
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/006-maven-scopes/maven-scopes.png" alt="Maven Scopes" />
+    <img src="/images/2020/08/006-maven-scopes/maven-scopes.png" alt="Maven Scopes" />
 </div>
 {{< /rawhtml >}}
 
@@ -242,7 +242,7 @@ Now, this only works for `compile, test, runtime` and `provided` scope dependenc
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/006-maven-scopes/maven-scope-transitivity.png" alt="Maven Scopes & Transitive Dependencies" />
+    <img src="/images/2020/08/006-maven-scopes/maven-scope-transitivity.png" alt="Maven Scopes & Transitive Dependencies" />
 </div>
 {{< /rawhtml >}}
 
@@ -275,7 +275,7 @@ Also, their scope remains the same. So, a transitive dependency, that is marked 
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/006-maven-scopes/maven-scope-transitivity-compile.png" alt="Transitive Dependency for Maven Scope - Compile" />
+    <img src="/images/2020/08/006-maven-scopes/maven-scope-transitivity-compile.png" alt="Transitive Dependency for Maven Scope - Compile" />
 </div>
 {{< /rawhtml >}}
 
@@ -296,7 +296,7 @@ Also, these transitive dependencies are marked as `test` scoped when they are ad
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/006-maven-scopes/maven-scope-transitivity-test.png" alt="Transitive Dependency for Maven Scope - Test" />
+    <img src="/images/2020/08/006-maven-scopes/maven-scope-transitivity-test.png" alt="Transitive Dependency for Maven Scope - Test" />
 </div>
 {{< /rawhtml >}}
 
@@ -316,7 +316,7 @@ Also, these transitive dependencies are marked as `runtime` scope when they are 
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/006-maven-scopes/maven-scope-transitivity-runtime.png" alt="Transitive Dependency for Maven Scope - Runtime" />
+    <img src="/images/2020/08/006-maven-scopes/maven-scope-transitivity-runtime.png" alt="Transitive Dependency for Maven Scope - Runtime" />
 </div>
 {{< /rawhtml >}}
 
@@ -336,6 +336,6 @@ Also, these transitive dependencies are marked as `provided` scoped when they ar
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/006-maven-scopes/maven-scope-transitivity-provided.png" alt="Transitive Dependency for Maven Scope - Provided" />
+    <img src="/images/2020/08/006-maven-scopes/maven-scope-transitivity-provided.png" alt="Transitive Dependency for Maven Scope - Provided" />
 </div>
 {{< /rawhtml >}}
