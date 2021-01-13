@@ -36,7 +36,7 @@ Below is a quick diagram depicting that.
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/005-maven-dependency-types-direct-transitive/maven-transitivity.png" alt="Maven Transitivity" />
+    <img src="/images/2020/08/005-maven-dependency-types-direct-transitive/maven-transitivity.png" alt="Maven Transitivity" />
 </div>
 {{< /rawhtml >}}
 

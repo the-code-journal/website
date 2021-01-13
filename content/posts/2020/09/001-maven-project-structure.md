@@ -1,6 +1,6 @@
 ---
 date: 2020-09-03
-linktitle: Maven Dependency Scopes
+linktitle: Maven Project Structure
 next: /2020/09/maven-project-object-model/
 prev: /2020/08/maven-dependency-scopes/
 title: Maven Project Structure

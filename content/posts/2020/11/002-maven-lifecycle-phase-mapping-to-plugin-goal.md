@@ -1,7 +1,7 @@
 ---
 date: 2020-11-21
-linktitle: Maven Lifecycles
-next: /2020/08/install-apache-maven-on-linux/
+linktitle: Maven Lifecycle Phase Mapping to Plugin Goals
+next: /2020/12/generating-code-using-maven-java-to-xsd/
 prev: /2020/11/maven-lifecycles/
 title: Maven Lifecycle Phase Mapping to Plugin Goals
 weight: 10

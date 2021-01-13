@@ -58,7 +58,7 @@ Take a typical Java Web Application with Database as backend.
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/004-maven-dependency-management/maven-web-application.png" alt="Maven Dependency Java Web Application" />
+    <img src="/images/2020/08/004-maven-dependency-management/maven-web-application.png" alt="Maven Dependency Java Web Application" />
 </div>
 {{< /rawhtml >}}
 
@@ -80,7 +80,7 @@ What that means is that, when one of your dependency in turn is dependent on any
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/004-maven-dependency-management/maven-web-application-dependency.png" alt="Maven Java Web Application Dependencies" />
+    <img src="/images/2020/08/004-maven-dependency-management/maven-web-application-dependency.png" alt="Maven Java Web Application Dependencies" />
 </div>
 {{< /rawhtml >}}
 

@@ -15,7 +15,7 @@ categories: [ "DevOps", "Maven", "Tools" ]
 
 Here is the video explaining these.
 
-{{< yt "https://www.youtube.com/embed/gOGrKEGBm0I" >}}
+{{< yt "https://www.youtube.com/embed/v_7R48UNH6k" >}}
 
 
 
@@ -41,7 +41,7 @@ A similar lifecycle in Software world is the Product Lifecycle. We start off wit
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/009-maven-lifecycles/software-product-lifecycle.png" alt="Software Product Lifecycle" />
+    <img src="/images/2020/11/001-maven-lifecycles/software-product-lifecycle.png" alt="Software Product Lifecycle" />
 </div>
 {{< /rawhtml >}}
 
@@ -63,7 +63,7 @@ A plugin goal represents a specific task which contributes to the building and m
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/009-maven-lifecycles/maven-lifecycle-phases.png" alt="Maven Lifecycle Phases" />
+    <img src="/images/2020/11/001-maven-lifecycles/maven-lifecycle-phases.png" alt="Maven Lifecycle Phases" />
 </div>
 {{< /rawhtml >}}
 

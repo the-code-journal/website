@@ -39,7 +39,7 @@ Let me walk you through these steps in detail for a Linux system.
 
 The first step is to download the [Apache Maven](https://maven.apache.org/) from the official website. The downloads page for Apache Maven is this - https://maven.apache.org/download.cgi. On this page, you have two binary options to download - either a zip file or a tar.gz file(marked in blue boxes). Here is the screenshot below.
 
-![Apache Maven Download Files](/images/001-maven-install-linux-mac/maven-downloads-binary.png)
+![Apache Maven Download Files](/images/2020/08/001-maven-install-linux-mac/maven-downloads-binary.png)
 
 You can chose either of these. If you are not sure, chose the zip file. Also, download the corresponding checksum file(marked in orange boxes) so that you can validate the zip file download.
 
