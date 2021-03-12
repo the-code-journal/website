@@ -1,7 +1,7 @@
 ---
 date: 2020-12-29
 linktitle: Generating Code using Maven - XSD to Java
-next: /2020/08/install-apache-maven-on-linux/
+next: /2021/01/generating-code-using-maven-java-to-json-schema/
 prev: /2020/11/generating-code-using-maven-java-to-xsd/
 title: Generating Code using Maven - XSD to Java
 weight: 10
