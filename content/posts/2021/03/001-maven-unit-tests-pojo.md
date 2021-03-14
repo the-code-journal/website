@@ -120,7 +120,7 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  1.239 s
-[INFO] Finished at: 2021-03-11T01:05:20+01:00
+[INFO] Finished at: 2021-03-11T01:05:20+05:30
 [INFO] ------------------------------------------------------------------------
 </pre>
 {{< /rawhtml >}}
@@ -216,7 +216,7 @@ Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  1.214 s
-[INFO] Finished at: 2021-03-11T01:21:41+01:00
+[INFO] Finished at: 2021-03-11T01:21:41+05:30
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.12.4:test (default-test) on project maven-unit-tests-pojo: There are test failures.
 [ERROR] 
