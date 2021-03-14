@@ -207,7 +207,7 @@ If you run `mvn dependency:tree`, the output confirms the inclusion.
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  0.889 s
-[INFO] Finished at: 2020-09-27T22:49:14+02:00
+[INFO] Finished at: 2020-09-27T22:49:14+05:30
 [INFO] ------------------------------------------------------------------------
 </pre>
 {{< /rawhtml >}}

@@ -271,7 +271,7 @@ Note: Writing /home/codejournal/workspace/maven-generate-code-java-to-xsd/target
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  2.092 s
-[INFO] Finished at: 2021-01-06T22:53:48+01:00
+[INFO] Finished at: 2021-01-06T22:53:48+05:30
 [INFO] ------------------------------------------------------------------------
 </pre>
 {{< /rawhtml >}}
