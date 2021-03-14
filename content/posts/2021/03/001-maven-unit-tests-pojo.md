@@ -1,8 +1,8 @@
 ---
 date: 2021-03-11
 linktitle: Unit Testing in Maven - Pojo Tests
-next: /2021/02/generating-code-using-maven-swagger-to-java/
-prev: /2020/08/install-apache-maven-on-linux/
+next: /2021/03/unit-testing-in-maven-junit4-tests/
+prev: /2021/02/generating-code-using-maven-swagger-to-java/
 title: Unit Testing in Maven - Pojo Tests
 weight: 10
 tags: [ "maven", "devops", "tools"]
