@@ -168,8 +168,6 @@ To create the XSD Schema file, you need the POJO Java classes. Let's create the 
 ```java
 package io.codejournal.maven.java2xsd;
 
-import static java.lang.String.format;
-
 public class Employee {
 
     private int id;
@@ -185,8 +183,6 @@ public class Employee {
 
 ```java
 package io.codejournal.maven.java2xsd;
-
-import static java.lang.String.format;
 
 public class Department {
 
