@@ -124,18 +124,15 @@ Here are the contents of the Project
 .
 ├── pom.xml
 └── src
-    ├── main
-    │   ├── java
-    │   │   └── io
-    │   │       └── codejournal
-    │   │           └── maven
-    │   │               └── java2jsonschema
-    │   │                   ├── Department.java
-    │   │                   └── Employee.java
-    │   └── resources
-    └── test
-        ├── java
-        └── resources
+    └── main
+        ├── java
+        │   └── io
+        │       └── codejournal
+        │           └── maven
+        │               └── java2jsonschema
+        │                   ├── Department.java
+        │                   └── Employee.java
+        └── resources
 </pre>
 {{< /rawhtml >}}
 

@@ -209,12 +209,12 @@ Here is a sample run.
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ maven-generate-code-xsd-to-java ---
-[INFO] Deleting /home/codejournal/workspace/maven-generate-code-xsd-to-java/final/target
+[INFO] Deleting /home/codejournal/workspace/maven-generate-code-xsd-to-java/target
 [INFO] 
 [INFO] --- jaxb2-maven-plugin:2.5.0:xjc (xsd-to-java) @ maven-generate-code-xsd-to-java ---
-[INFO] Created EpisodePath [/home/codejournal/workspace/maven-generate-code-xsd-to-java/final/target/generated-sources/jaxb/META-INF/JAXB]: true
-[INFO] Ignored given or default xjbSources [/home/codejournal/workspace/maven-generate-code-xsd-to-java/final/src/main/xjb], since it is not an existent file or directory.
-[INFO] Created EpisodePath [/home/codejournal/workspace/maven-generate-code-xsd-to-java/final/target/generated-sources/jaxb/META-INF/JAXB]: true
+[INFO] Created EpisodePath [/home/codejournal/workspace/maven-generate-code-xsd-to-java/target/generated-sources/jaxb/META-INF/JAXB]: true
+[INFO] Ignored given or default xjbSources [/home/codejournal/workspace/maven-generate-code-xsd-to-java/src/main/xjb], since it is not an existent file or directory.
+[INFO] Created EpisodePath [/home/codejournal/workspace/maven-generate-code-xsd-to-java/target/generated-sources/jaxb/META-INF/JAXB]: true
 [INFO] 
 [INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ maven-generate-code-xsd-to-java ---
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
@@ -224,7 +224,7 @@ Here is a sample run.
 [INFO] 
 [INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ maven-generate-code-xsd-to-java ---
 [INFO] Changes detected - recompiling the module!
-[INFO] Compiling 4 source files to /home/codejournal/workspace/maven-generate-code-xsd-to-java/final/target/classes
+[INFO] Compiling 4 source files to /home/codejournal/workspace/maven-generate-code-xsd-to-java/target/classes
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------

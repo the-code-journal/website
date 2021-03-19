@@ -11,9 +11,9 @@ categories: [ "DevOps", "Maven", "Tools" ]
 
 
 
-In this tutorial, we will talk about how Maven can be used to generate Java classes from XML Schema definitions or XSDs. While dealing with XML data, this can really help to cut down your development effort to map the XML structure to Java classes, and you can also avoid a lot of errors during XML processing, by using information from the XSD.
+In this tutorial, we will talk about how Maven can be used to generate Java classes from [JSON Schema][1]. This really helps you to get started with processing of JSON data, as your Java classes gets mapped the JSON structure automatically and you don’t have to invest time doing that.
 
-Below is the video which demos generating Java classes from XSD.
+Below is the video which demos generating Java classes from JSON Schema.
 
 {{< yt "https://www.youtube.com/embed/4oUJL1U1zac" >}}
 
@@ -21,17 +21,17 @@ Below is the video which demos generating Java classes from XSD.
 
 
 
-## XSD to Java
+## JSON Schema to Java
 
-In the [previous article](/2020/11/generating-code-using-maven-java-to-xsd/), we saw how we can generate the XSD schema file from Java classes that we can give to our clients or consumers, so that they can know what is the structure of XML data they will be processing.
+In the [previous article][2], we saw the left side of the processing pipeline - generating JSON schema from Java classes.
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/2020/12/002-maven-generating-code-xsd-to-java/maven-xsd-to-java.png" alt="Maven Java to XSD" />
+    <img src="/images/2021/01/maven-json-schema-to-java.png" alt="Maven JSON Schema to Java" />
 </div>
 {{< /rawhtml >}}
 
-Now, let’s look at the right side of this setup where your application is the consumer of the XML data, and how you can use the XSD schema to generate the Java classes which represent the XML data.
+In this tutorial, we will take the JSON schema files created in the [previous article][2], and generate the Java files for them.
 
 
 
@@ -41,7 +41,7 @@ Now, let’s look at the right side of this setup where your application is the 
 
 ## Project
 
-The initial project used in this article is [available here][1].
+The initial project used in this article is [available here][3].
 
 Here are the contents of the Project
 
@@ -50,14 +50,17 @@ Here are the contents of the Project
 -> tree .
 .
 ├── pom.xml
-├── schema1.xsd
 └── src
-    ├── main
-    │   ├── java
-    │   └── resources
-    └── test
-        ├── java
-        └── resources
+    └── main
+        ├── java
+        │   └── io
+        │       └── codejournal
+        │           └── maven
+        │               └── jsonschema2java
+        └── resources
+            └── schemas
+                ├── department.json
+                └── employee.json
 </pre>
 {{< /rawhtml >}}
 
@@ -70,7 +73,7 @@ We have `pom.xml` exists with bare minimum configuration below. It has project c
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.codejournal.maven</groupId>
-    <artifactId>maven-generate-code-xsd-to-java</artifactId>
+    <artifactId>maven-generate-code-json-schema-to-java</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
@@ -82,27 +85,37 @@ We have `pom.xml` exists with bare minimum configuration below. It has project c
 </project>
 ```
 
-Another file is the `schema1.xsd` that we created in the [previous article](/2020/11/generating-code-using-maven-java-to-xsd/). Here are the contents of the XSD file.
+We have the two JSON schema files - `employee.json` and `department.json`, that we generated in the [previous article][2].
 
-```xml
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
-
-  <xs:complexType name="department">
-    <xs:sequence>
-      <xs:element name="id" type="xs:int" />
-      <xs:element name="name" type="xs:string" minOccurs="0" />
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="employee">
-    <xs:sequence>
-      <xs:element name="id" type="xs:int" />
-      <xs:element name="name" type="xs:string" minOccurs="0" />
-      <xs:element name="dept" type="department" minOccurs="0" />
-    </xs:sequence>
-  </xs:complexType>
-</xs:schema>
+```json
+{
+  "_comment": "employee.json",
+  "type": "object",
+  "id": "urn:jsonschema:io:codejournal:maven:java2jsonschema:Employee",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}
+```
+```json
+{
+  "_comment": "departmet.json",
+  "type": "object",
+  "id": "urn:jsonschema:io:codejournal:maven:java2jsonschema:Department",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}
 ```
 
 
@@ -111,61 +124,42 @@ Another file is the `schema1.xsd` that we created in the [previous article](/202
 
 {{< articlead >}}
 
-## Maven Jaxb Plugin
+## javaschema2pojo plugin
 
-We will use [jaxb2-maven-plugin][2] and it has following goals.
+We will be using [javaschema2pojo][4] to generate our Java classes from JSON. There is an [online version][5] also for this tool, where you can generate the Java class online itself, and there are lots of configuration options to fiddle around with.
 
-This plugin has following goals.
-- `jaxb2:schemagen` - Mojo that creates XML schema(s) from compile-scope Java sources or binaries by invoking the JAXB SchemaGenerator.
-- `jaxb2:testSchemagen` - Mojo that creates XML schema(s) from test-scope Java testSources or binaries by invoking the JAXB SchemaGenerator.
-- `jaxb2:testXjc` - Mojo that creates test-scope Java source or binaries from XML schema(s) by invoking the JAXB XJC binding compiler.
-- `jaxb2:xjc` - Mojo that creates compile-scope Java source or binaries from XML schema(s) by invoking the JAXB XJC binding compiler.
+The plugin has a single goal - `generate` that is attached to the `generate-sources` phase by default. Here is the [documentation][4] for this plugin.
 
-For our use-case, XSD to Java, we will need [`xjc`][3] goal. Let's start configuring the plugin in `pom.xml`.
+Let's start configuring the plugin in `pom.xml`.
 
 ```xml
 <build>
     <plugins>
         <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>jaxb2-maven-plugin</artifactId>
-            <version>2.5.0</version>
+            <groupId>org.jsonschema2pojo</groupId>
+            <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+            <version>1.0.2</version>
             <executions>
                 <execution>
-                    <id>xsd-to-java</id>
                     <goals>
-                        <goal>xjc</goal>
+                        <goal>generate</goal>
                     </goals>
                 </execution>
             </executions>
             <configuration>
-                <packageName>io.codejournal.maven.xsd2java</packageName>
+                <sourceDirectory>${basedir}/src/main/resources/schemas</sourceDirectory>
+                <targetPackage>io.codejournal.maven.jsonschema2json</targetPackage>
             </configuration>
         </plugin>
     </plugins>
 </build>
 ```
 
-So, we configured the goal `xjc`, and in `configuration`, we specified the package where we want the Java files to be generated.
+So, we configured the goal `generate`, which is by default attached to `generate-sources` phase.
 
-Now, if your Maven project is configured for Java 10 or below, then you wont need anything. That's because JAXB was part of JDK and it was [deprecated in Java 9][3]. But, since Java 11, JAXB classes are [removed from JDK 11][4].
+To specify where our schema files exists, we provided the path via `<sourceDirectory>`, and the package where the class files need to be generated, that is specified using `<targetPackage>`.
 
-Hence, for Java 11, we will need to add the JAXB dependencies - [API][5] and [an implementation][6]. These dependencies are below.
-
-```xml
-<dependencies>
-	<dependency>
-		<groupId>javax.xml.bind</groupId>
-		<artifactId>jaxb-api</artifactId>
-		<version>2.3.1</version>
-	</dependency>
-	<dependency>
-		<groupId>com.sun.xml.bind</groupId>
-		<artifactId>jaxb-impl</artifactId>
-		<version>3.0.0</version>
-	</dependency>
-</dependencies>
-```
+And that is all you need to get this working.
 
 
 
@@ -175,249 +169,179 @@ Hence, for Java 11, we will need to add the JAXB dependencies - [API][5] and [an
 
 ## Building
 
-Before we run the build, the last thing we need to do is placing the `schema1.xsd` in the right folder. The plugin expects the schema files to be placed inside `src/main/xsd` directory.
-
-So, let's create a new folder, `xsd` inside `src/main` and move the `schema1.xsd` inside it.
-
-```
-[codejournal@codejournal-box ~/workspace/maven-generate-code-xsd-to-java]
--> mkdir src/main/xsd
-
-[codejournal@codejournal-box ~/workspace/maven-generate-code-xsd-to-java]
--> mv schema1.xsd src/main/xsd/
-
-[codejournal@codejournal-box ~/workspace/maven-generate-code-xsd-to-java]
--> tree src/main/
-src/main/
-├── java
-├── resources
-└── xsd
-    └── schema1.xsd
-```
-
-And that should do it. When you run `mvn clean compile`, maven will run the `xjc` goal during the `generate-sources` phase and generate the Java classes for the schema.
+When you run `mvn clean generate-sources`, maven will run the `generate` goal during the `generate-sources` phase and generate the Java classes for the schema.
 
 Here is a sample run.
+
+{{< rawhtml >}}
+<pre class="code-output">
+-> mvn clean generate-sources
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----< io.codejournal.maven:maven-generate-code-json-schema-to-java >----
+[INFO] Building maven-generate-code-json-schema-to-java 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ maven-generate-code-json-schema-to-java ---
+[INFO] Deleting /home/codejournal/workspace/maven-generate-code-json-schema-to-java/target
+[INFO] 
+[INFO] --- jsonschema2pojo-maven-plugin:1.0.2:generate (default) @ maven-generate-code-json-schema-to-java ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.524 s
+[INFO] Finished at: 2021-01-15T01:22:17+05:30
+[INFO] ------------------------------------------------------------------------
+</pre>
+{{< /rawhtml >}}
+
+Let's look inside the `target/generated-sources/jsonschema2pojo` and you will see the Java files in there.
+
+{{< rawhtml >}}
+<pre class="code-output">
+-> tree target/generated-sources/jsonschema2pojo
+target/generated-sources/jsonschema2pojo
+└── io
+    └── codejournal
+        └── maven
+            └── jsonschema2json
+                ├── Department.java
+                └── Employee.java
+
+4 directories, 2 files
+</pre>
+{{< /rawhtml >}}
+
+{{< articlead >}}
+
+Let's loook at the contents of the `Employee.java`, as an example.
+
+{{< rawhtml >}}
+<pre class="code-output">
+package io.codejournal.maven.jsonschema2json;
+
+import java.util.HashMap;
+import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+    "id",
+    "name"
+})
+public class Employee {
+
+    @JsonProperty("id")
+    private Integer id;
+    @JsonProperty("name")
+    private String name;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    @JsonProperty("id")
+    public Integer getId() {
+        return id;
+    }
+
+    @JsonProperty("id")
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @JsonProperty("name")
+    public String getName() {
+        return name;
+    }
+
+    @JsonProperty("name")
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
+    }
+
+    @Override
+    public String toString() {
+        // Generated toString
+    }
+
+    @Override
+    public int hashCode() {
+        // Generated hashCode
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // Generated equals
+    }
+}
+</pre>
+{{< /rawhtml >}}
+
+You will notice that, there are annotations(`@JsonProperty, @JsonInclude` etc.). These are from [Jackson library][7] and to make sure the compilation of these classes works, we need to include the Jackson library in our `pom.xml`.
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.12.0</version>
+    </dependency>
+</dependencies>
+```
+
+And now when you run `mvn clean compile`, the build should be successfully compiling these classes.
 
 {{< rawhtml >}}
 <pre class="code-output">
 -> mvn clean compile
 [INFO] Scanning for projects...
 [INFO] 
-[INFO] --------< io.codejournal.maven:maven-generate-code-xsd-to-java >--------
-[INFO] Building maven-generate-code-xsd-to-java 0.0.1-SNAPSHOT
+[INFO] ----< io.codejournal.maven:maven-generate-code-json-schema-to-java >----
+[INFO] Building maven-generate-code-json-schema-to-java 0.0.1-SNAPSHOT
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
-[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ maven-generate-code-xsd-to-java ---
-[INFO] Deleting /home/codejournal/workspace/maven-generate-code-xsd-to-java/final/target
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ maven-generate-code-json-schema-to-java ---
+[INFO] Deleting /home/codejournal/workspace/maven-generate-code-json-schema-to-java/target
 [INFO] 
-[INFO] --- jaxb2-maven-plugin:2.5.0:xjc (xsd-to-java) @ maven-generate-code-xsd-to-java ---
-[INFO] Created EpisodePath [/home/codejournal/workspace/maven-generate-code-xsd-to-java/final/target/generated-sources/jaxb/META-INF/JAXB]: true
-[INFO] Ignored given or default xjbSources [/home/codejournal/workspace/maven-generate-code-xsd-to-java/final/src/main/xjb], since it is not an existent file or directory.
-[INFO] Created EpisodePath [/home/codejournal/workspace/maven-generate-code-xsd-to-java/final/target/generated-sources/jaxb/META-INF/JAXB]: true
+[INFO] --- jsonschema2pojo-maven-plugin:1.0.2:generate (default) @ maven-generate-code-json-schema-to-java ---
 [INFO] 
-[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ maven-generate-code-xsd-to-java ---
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ maven-generate-code-json-schema-to-java ---
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] Copying 0 resource
-[INFO] Copying 1 resource
-[INFO] Copying 1 resource
+[INFO] Copying 2 resources
 [INFO] 
-[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ maven-generate-code-xsd-to-java ---
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ maven-generate-code-json-schema-to-java ---
 [INFO] Changes detected - recompiling the module!
-[INFO] Compiling 4 source files to /home/codejournal/workspace/maven-generate-code-xsd-to-java/final/target/classes
+[INFO] Compiling 3 source files to /home/codejournal/workspace/maven-generate-code-json-schema-to-java/target/classes
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  1.489 s
-[INFO] Finished at: 2020-12-29T19:06:54+05:30
+[INFO] Total time:  1.437 s
+[INFO] Finished at: 2021-01-15T01:28:53+05:30
 [INFO] ------------------------------------------------------------------------
 </pre>
 {{< /rawhtml >}}
 
-Let's look inside the `target/generated-sources/jaxb` and you will see the Java files in there.
-
-{{< rawhtml >}}
-<pre class="code-output">
--> tree target/generated-sources/jaxb/
-target/generated-sources/jaxb/
-├── io
-│   └── codejournal
-│       └── maven
-│           └── xsd2java
-│               ├── Department.java     &lt;--------
-│               ├── Employee.java       &lt;--------
-│               └── ObjectFactory.java  &lt;--------
-└── META-INF
-    └── JAXB
-        └── episode_xsd-to-java.xjb
-</pre>
-{{< /rawhtml >}}
-
-The contents of the `Employee.java` and `Department.java` are below.
-
-{{< rawhtml >}}
-<pre class="code-output">
-+----------------------------------------------------------------+--------------------------------------------------------------+
-|                      Employee.java                             |                        Department.java                       |
-+----------------------------------------------------------------+--------------------------------------------------------------+
-package io.codejournal.maven.xsd2java;                           |  package io.codejournal.maven.xsd2java;
-                                                                 |  
-import javax.xml.bind.annotation.XmlAccessType;                  |  import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;                |  import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;                        |  import javax.xml.bind.annotation.XmlType;
-                                                                 |  
-@XmlAccessorType(XmlAccessType.FIELD)                            |  @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "employee", propOrder = {                        |  @XmlType(name = "department", propOrder = {
-    "id",                                                        |      "id",
-    "name",                                                      |      "name"
-    "dept"                                                       |  })
-})                                                               |  public class Department {
-public class Employee {                                          |  
-                                                                 |      protected int id;
-    protected int id;                                            |      protected String name;
-    protected String name;                                       |  
-    protected Department dept;                                   |      /**
-                                                                 |       * Gets the value of the id property.
-    /**                                                          |       * 
-     * Gets the value of the id property.                        |       */
-     *                                                           |      public int getId() {
-     */                                                          |          return id;
-    public int getId() {                                         |      }
-        return id;                                               |  
-    }                                                            |      /**
-                                                                 |       * Sets the value of the id property.
-    /**                                                          |       * 
-     * Sets the value of the id property.                        |       */
-     *                                                           |      public void setId(int value) {
-     */                                                          |          this.id = value;
-    public void setId(int value) {                               |      }
-        this.id = value;                                         |  
-    }                                                            |      /**
-                                                                 |       * Gets the value of the name property.
-    /**                                                          |       * 
-     * Gets the value of the name property.                      |       * @return
-     *                                                           |       *     possible object is
-     * @return                                                   |       *     {@link String }
-     *     possible object is                                    |       *     
-     *     {@link String }                                       |       */
-     *                                                           |      public String getName() {
-     */                                                          |          return name;
-    public String getName() {                                    |      }
-        return name;                                             |  
-    }                                                            |      /**
-                                                                 |       * Sets the value of the name property.
-    /**                                                          |       * 
-     * Sets the value of the name property.                      |       * @param value
-     *                                                           |       *     allowed object is
-     * @param value                                              |       *     {@link String }
-     *     allowed object is                                     |       *     
-     *     {@link String }                                       |       */
-     *                                                           |      public void setName(String value) {
-     */                                                          |          this.name = value;
-    public void setName(String value) {                          |      }
-        this.name = value;                                       |  }
-    }                                                            |  
-                                                                 |  
-    /**                                                          |  
-     * Gets the value of the dept property.                      |  
-     *                                                           |  
-     * @return                                                   |  
-     *     possible object is                                    |  
-     *     {@link Department }                                   |  
-     *                                                           |  
-     */                                                          |  
-    public Department getDept() {                                |  
-        return dept;                                             |  
-    }                                                            |  
-                                                                 |  
-    /**                                                          |  
-     * Sets the value of the dept property.                      |  
-     *                                                           |  
-     * @param value                                              |  
-     *     allowed object is                                     |  
-     *     {@link Department }                                   |  
-     *                                                           |  
-     */                                                          |  
-    public void setDept(Department value) {                      |  
-        this.dept = value;                                       |  
-    }                                                            |  
-}
-</pre>
-{{< /rawhtml >}}
-
-There is another class `ObjectFactory.java` which is the Factory class to allow you to create `Employee` and `Department` objects easily.
-
-{{< rawhtml >}}
-<pre class="code-output">
-package io.codejournal.maven.xsd2java;
-
-import javax.xml.bind.annotation.XmlRegistry;
-
-@XmlRegistry
-public class ObjectFactory {
+The [working code][6] is available on github for reference.
 
 
-    /**
-     * Create a new ObjectFactory that can be used to create new instances
-     * of schema derived classes for package: io.codejournal.maven.xsd2java
-     * 
-     */
-    public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link Department }
-     * 
-     */
-    public Department createDepartment() {
-        return new Department();
-    }
-
-    /**
-     * Create an instance of {@link Employee }
-     * 
-     */
-    public Employee createEmployee() {
-        return new Employee();
-    }
-}
-</pre>
-{{< /rawhtml >}}
-
-These Java classes are available for you to use in your code. Any changes to the `schema1.xsd` will automatically be reflected in the Java classes.
-
-Here is a sample `Runner.java` that uses these classes generated by Maven.
-
-```java
-package io.codejournal.maven.xsd2java;
-
-public class Runner {
-
-    public static void main(final String[] args) {
-
-        final ObjectFactory factory = new ObjectFactory();
-
-        final Department dept = factory.createDepartment();
-        dept.setId(1);
-        dept.setName("Finance");
-
-        final Employee emp = factory.createEmployee();
-        emp.setId(1001);
-        emp.setName("John Doe");
-        emp.setDept(dept);
-
-        System.out.println(emp);
-    }
-}
-```
-
-The [working code][7] is available on github for reference.
-
-
- [1]: https://github.com/the-code-journal/maven-for-beginners/raw/main/004-generate-code-xsd-to-java/maven-generate-code-xsd-to-java.zip
- [2]: https://github.com/mojohaus/jaxb2-maven-plugin
- [3]: https://docs.oracle.com/javase/9/docs/api/deprecated-list.html
- [4]: https://www.oracle.com/java/technologies/javase/jdk-11-relnote.html#JDK-8190378
- [5]: https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
- [6]: https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl
- [7]: https://github.com/the-code-journal/maven-for-beginners/raw/main/004-generate-code-xsd-to-java/final
+  [1]: https://json-schema.org/
+  [2]: /2021/01/generating-code-using-maven-java-to-json-schema/
+  [3]: https://github.com/the-code-journal/maven-for-beginners/raw/main/006-generate-code-json-schema-to-java/maven-generate-code-json-schema-to-java.zip
+  [4]: https://github.com/joelittlejohn/jsonschema2pojo/wiki/Getting-Started#the-maven-plugin
+  [5]: http://www.jsonschema2pojo.org/
+  [6]: https://github.com/the-code-journal/maven-for-beginners/tree/main/006-generate-code-json-schema-to-java/final
+  [7]: https://github.com/FasterXML/jackson
