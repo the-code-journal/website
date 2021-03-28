@@ -114,7 +114,7 @@ Here is the output from a project that has just `junit` added to its `pom.xml`.
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  1.004 s
-[INFO] Finished at: 2020-10-08T21:13:06+02:00
+[INFO] Finished at: 2020-10-08T21:13:06+05:30
 [INFO] ------------------------------------------------------------------------
 </pre>
 {{< /rawhtml >}}

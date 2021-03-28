@@ -1,7 +1,7 @@
 ---
 date: 2020-12-29
 linktitle: Generating Code using Maven - XSD to Java
-next: /2020/08/install-apache-maven-on-linux/
+next: /2021/01/generating-code-using-maven-java-to-json-schema/
 prev: /2020/11/generating-code-using-maven-java-to-xsd/
 title: Generating Code using Maven - XSD to Java
 weight: 10
@@ -154,16 +154,16 @@ Hence, for Java 11, we will need to add the JAXB dependencies - [API][5] and [an
 
 ```xml
 <dependencies>
-	<dependency>
-		<groupId>javax.xml.bind</groupId>
-		<artifactId>jaxb-api</artifactId>
-		<version>2.3.1</version>
-	</dependency>
-	<dependency>
-		<groupId>com.sun.xml.bind</groupId>
-		<artifactId>jaxb-impl</artifactId>
-		<version>3.0.0</version>
-	</dependency>
+    <dependency>
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
+        <version>2.3.1</version>
+    </dependency>
+    <dependency>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-impl</artifactId>
+        <version>3.0.0</version>
+    </dependency>
 </dependencies>
 ```
 
@@ -209,12 +209,12 @@ Here is a sample run.
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ maven-generate-code-xsd-to-java ---
-[INFO] Deleting /home/codejournal/workspace/maven-generate-code-xsd-to-java/final/target
+[INFO] Deleting /home/codejournal/workspace/maven-generate-code-xsd-to-java/target
 [INFO] 
 [INFO] --- jaxb2-maven-plugin:2.5.0:xjc (xsd-to-java) @ maven-generate-code-xsd-to-java ---
-[INFO] Created EpisodePath [/home/codejournal/workspace/maven-generate-code-xsd-to-java/final/target/generated-sources/jaxb/META-INF/JAXB]: true
-[INFO] Ignored given or default xjbSources [/home/codejournal/workspace/maven-generate-code-xsd-to-java/final/src/main/xjb], since it is not an existent file or directory.
-[INFO] Created EpisodePath [/home/codejournal/workspace/maven-generate-code-xsd-to-java/final/target/generated-sources/jaxb/META-INF/JAXB]: true
+[INFO] Created EpisodePath [/home/codejournal/workspace/maven-generate-code-xsd-to-java/target/generated-sources/jaxb/META-INF/JAXB]: true
+[INFO] Ignored given or default xjbSources [/home/codejournal/workspace/maven-generate-code-xsd-to-java/src/main/xjb], since it is not an existent file or directory.
+[INFO] Created EpisodePath [/home/codejournal/workspace/maven-generate-code-xsd-to-java/target/generated-sources/jaxb/META-INF/JAXB]: true
 [INFO] 
 [INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ maven-generate-code-xsd-to-java ---
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
@@ -224,12 +224,12 @@ Here is a sample run.
 [INFO] 
 [INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ maven-generate-code-xsd-to-java ---
 [INFO] Changes detected - recompiling the module!
-[INFO] Compiling 4 source files to /home/codejournal/workspace/maven-generate-code-xsd-to-java/final/target/classes
+[INFO] Compiling 4 source files to /home/codejournal/workspace/maven-generate-code-xsd-to-java/target/classes
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  1.489 s
-[INFO] Finished at: 2020-12-29T19:06:54+01:00
+[INFO] Finished at: 2020-12-29T19:06:54+05:30
 [INFO] ------------------------------------------------------------------------
 </pre>
 {{< /rawhtml >}}

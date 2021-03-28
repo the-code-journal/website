@@ -119,7 +119,7 @@ And here is the output.
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  0.190 s
-[INFO] Finished at: 2020-11-21T21:21:19+01:00
+[INFO] Finished at: 2020-11-21T21:21:19+05:30
 [INFO] ------------------------------------------------------------------------
 </pre>
 {{< /rawhtml >}}
@@ -194,7 +194,7 @@ If you run this now, you will get output for `pre-clean` and `clean` phases sinc
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  0.472 s
-[INFO] Finished at: 2020-11-22T01:17:18+01:00
+[INFO] Finished at: 2020-11-22T01:17:18+05:30
 [INFO] ------------------------------------------------------------------------
 </pre>
 {{< /rawhtml >}}
@@ -290,7 +290,7 @@ We added another mapping for `clean` phase. Now, Maven will be executing the def
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  0.570 s
-[INFO] Finished at: 2020-11-22T01:23:03+01:00
+[INFO] Finished at: 2020-11-22T01:23:03+05:30
 [INFO] ------------------------------------------------------------------------
 </pre>
 {{< /rawhtml >}}

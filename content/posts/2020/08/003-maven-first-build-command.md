@@ -203,7 +203,7 @@ Here if the output when you run `mvn clean package`.
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  1.872 s
-[INFO] Finished at: 2020-09-15T20:26:18+02:00
+[INFO] Finished at: 2020-09-15T20:26:18+05:30
 [INFO] ------------------------------------------------------------------------
 </pre>
 {{< /rawhtml >}}

@@ -26,9 +26,14 @@
 .code-output {
     color: #599347;
     font-size: 1.6rem;
+    max-height: 100vh;
 }
 
 .image img {
     display: block;
     margin: auto auto;
+}
+
+.article-ad {
+    height: 50px;
 }
