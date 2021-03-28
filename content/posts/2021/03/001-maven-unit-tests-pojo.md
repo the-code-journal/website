@@ -203,7 +203,7 @@ Running io.codejournal.maven.unittests.pojo.RunnerTest
 Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec <<< FAILURE!
 io.codejournal.maven.unittests.pojo.RunnerTest.testSum()  Time elapsed: 0.001 sec  <<< FAILURE!
 java.lang.AssertionError
-	at io.codejournal.maven.unittests.pojo.RunnerTest.testSum(RunnerTest.java:20)
+    at io.codejournal.maven.unittests.pojo.RunnerTest.testSum(RunnerTest.java:20)
 
 
 Results :
