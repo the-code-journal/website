@@ -117,7 +117,7 @@ Here is an example how to configure this.
 
 And the last section of relationships - dependencies. This section allows you to configure your project's dependencies.
 
-The wrapping tag is `dependencies` and then every dependency is configured inside this. Each dependency is configured by its coordinate and you define the [dependency scope](/2020/08/maven-dependency-scopes/) appropriately.
+The wrapping tag is `dependencies` and then every dependency is configured inside this. Each dependency is configured by its coordinate and you define the [dependency scope][1] appropriately.
 
 And those are all the configurations related to project relationships in Maven.
 
@@ -190,7 +190,7 @@ You can also configure your organization `name` and `url` in the poml like this.
 
 As a general rule of thumb, if somebody shouldn't be contacted about the project, they should not be part of this list.
 
-Here is an example, and most of the them are self explanatory with information like `id`, `name`, `email`, `roles`, user properties etc. You can look up [the documentation](https://maven.apache.org/pom.html#Developers) for more details if you are configuring this.
+Here is an example, and most of the them are self explanatory with information like `id`, `name`, `email`, `roles`, user properties etc. You can look up [the documentation][2] for more details if you are configuring this.
 
 ```xml
 ...
@@ -292,9 +292,9 @@ This makes your life easy by adhering to Maven's convention and getting your bui
 
 `extensions` can be used to enable extensions to the build process. They are also used to configure wagor providers that are used for the transport of artifact between repositories.
 
-Maven, by default uses [`HttpURLConnection`](https://docs.oracle.com/javase/8/docs/api/java/net/HttpURLConnection.html) java classes to download the artifacts, but there can be situations when you want to use a different way of fetching the artifacts from repositories. You might never need this, but this is an option available for you, in case you need these.
+Maven, by default uses [`HttpURLConnection`][3] java classes to download the artifacts, but there can be situations when you want to use a different way of fetching the artifacts from repositories. You might never need this, but this is an option available for you, in case you need these.
 
-Here is an example that configures `wagon-ftp` as your primary transport mechanism to exchange artifacts between repositories.
+Here is an example that configures [`wagon-ftp`][4] as your primary transport mechanism to exchange artifacts between repositories.
 
 ```xml
 ...
@@ -667,7 +667,7 @@ You also have option to create some new ones within `properties` section.
 ```xml
 ...
 <properties>
-  <junit.version>4.13</junit.version>
+  <junit.version>4.13.2</junit.version>
 </properties>
 
 <dependencies>
@@ -680,7 +680,7 @@ You also have option to create some new ones within `properties` section.
 ...
 ```
 
-In this example here, I have created a property as `junit.version` and the value is `4.13`. And then I am using this property when configuring the dependency for junit.
+In this example here, I have created a property as `junit.version` and the value is `4.13.2`. And then I am using this property when configuring the dependency for junit.
 
 This is a very common use case of custom property. This allows you to have all the dependency version as properties.
 
@@ -699,3 +699,9 @@ And that is all about Maven Project Object Model. As you can see, Maven’s POM 
 Obviously, you wont need all of these, and it will really depend on the size of the project you are dealing with.
 
 A general rule is to use Maven convention all the time unless you really have to customize it. Start with minimum configuration at first and build on top of that.
+
+
+  [1]: /2020/08/maven-dependency-scopes/
+  [2]: https://maven.apache.org/pom.html#Developers
+  [3]: https://docs.oracle.com/javase/8/docs/api/java/net/HttpURLConnection.html
+  [4]: https://maven.apache.org/wagon/wagon-providers/wagon-ftp/

@@ -9,7 +9,7 @@ tags: [ "maven", "devops", "tools"]
 categories: [ "DevOps", "Maven", "Tools" ]
 ---
 
-This article demonstrates the very first build with [Apache Maven](https://maven.apache.org/). In this article, we will use command prompt to create our simple Maven project and then use `mvn` command to build it
+This article demonstrates the very first build with [Apache Maven][1]. In this article, we will use command prompt to create our simple Maven project and then use `mvn` command to build it
 
 You can watch the entire demo in this video.
 
@@ -21,7 +21,10 @@ You can watch the entire demo in this video.
 
 ## Pre-requisite
 
-You need to have [Apache Maven](https://maven.apache.org/) already installed on your system. If you don't have Maven installed, you can install it by following steps from our previous articles - [Installing Maven on Linux](/2020/08/install-apache-maven-on-linux/), [Installing Maven on Mac](/2020/08/install-apache-maven-on-mac/), and [Installing Maven on Windows](/2020/08/install-apache-maven-on-windows/).
+You need to have [Apache Maven][1] already installed on your system. If you don't have Maven installed, you can install it by following steps from our previous articles:
+- [Installing Maven on Linux][2]
+- [Installing Maven on Mac][3]
+- [Installing Maven on Windows][4]
 
 You can also watch the videos here.
 
@@ -38,11 +41,13 @@ You can also watch the videos here.
 
 
 
+
+
 {{< articlead >}}
 
 ## Creating a Simple Maven Project
 
-In this tutorial, we will create the Maven project from the command prompt using the `mvn` command. This basic project scaffolding is done using the [maven-archetype-plugin](https://maven.apache.org/archetype/maven-archetype-plugin/). This plugin the one that is used by the IDEs under the hood to create the Project. 
+In this tutorial, we will create the Maven project from the command prompt using the `mvn` command. This basic project scaffolding is done using the [maven-archetype-plugin][5]. This plugin the one that is used by the IDEs under the hood to create the Project. 
 
 The archetype plugin has a numerous template projects to chose from and also from various sources. If you type simple `mvn archetype:generate`, you will be presented with 2800+
 various project templates. You can use the filter option to limit the search and chose, but in most cases, it is preferable to use an IDE.
@@ -71,9 +76,11 @@ mvn archetype:generate \
 
 The command is a long one, so let's dissect it one at a time.
 
+
+
 #### `archetype:generate`
 
-This is a goal of archetype plugin that is responsible for generating for the project. Maven's plugin execution follows this convention `plugin:goal` to execute the various executions goals provided by the plugin. A full list of archetype plugin's goals are [listed here](https://maven.apache.org/archetype/maven-archetype-plugin/plugin-info.html).
+This is a goal of archetype plugin that is responsible for generating for the project. Maven's plugin execution follows this convention `plugin:goal` to execute the various executions goals provided by the plugin. A full list of archetype plugin's goals are [listed here][6].
 
 Because, we need to create a project from a template, we use the `generate` goal.
 
@@ -87,7 +94,7 @@ Since, we are providing all the mandatory values as property arguments, we are d
 
 
 
-#### -DarchetypeGroupId=org.apache.maven.archetypes`
+#### `-DarchetypeGroupId=org.apache.maven.archetypes`
 
 This property tells the Archetype plugin to select the groupId of the archetype that need to be used to create the project. There can be multiple organizations or teams that are creating their own archetypes, and they could clash. The `archetypeGroupId` gives the ability to avoid such collitions.
 
@@ -96,7 +103,6 @@ For example, if you type `mvn archetype:generate`, and when the plugin is asking
 
 {{< rawhtml >}}
 <pre class="code-output">
-
 -> mvn archetype:generate
 ...
 ...
@@ -143,6 +149,8 @@ Now, that the project is created, let's see the files that have been created. A 
 {{< /rawhtml >}}
 
 `App.java` is a very simple java program with hello world, and `AppTest.java` is a Junit test class file. The `site.xml` contains a sample building of Project site.
+
+
 
 
 
@@ -210,8 +218,16 @@ Here if the output when you run `mvn clean package`.
 
 {{< rawhtml >}}
 <div class="notification">
-    If you are running `mvn clean package` for the very first time, you will see Maven download a lot of plugin jar files, just like the archetype plugin execution earlier. Everytime, there is a new plugin that Maven executes, or an existing plugin for which there is a new updated, Maven will download the new jar files for the first time.
+    If you are running <code>mvn clean package</code> for the very first time, you will see Maven download a lot of plugin jar files, just like the archetype plugin execution earlier. Everytime, there is a new plugin that Maven executes, or an existing plugin for which there is a new updated, Maven will download the new jar files for the first time.
 </div>
 {{< /rawhtml >}}
 
 And with that, your first Maven build is complete.
+
+
+  [1]: https://maven.apache.org/
+  [2]: /2020/08/install-apache-maven-on-linux/
+  [3]: /2020/08/install-apache-maven-on-mac/
+  [4]: /2020/08/install-apache-maven-on-windows/
+  [5]: https://maven.apache.org/archetype/maven-archetype-plugin/
+  [6]: https://maven.apache.org/archetype/maven-archetype-plugin/plugin-info.html

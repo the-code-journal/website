@@ -8,7 +8,7 @@ tags: [ "maven", "devops", "tools"]
 categories: [ "DevOps", "Maven", "Tools" ]
 ---
 
-This article gives you a step by step walkthrough for installing [Apache Maven](https://maven.apache.org/) on Linux. 
+This article gives you a step by step walkthrough for installing [Apache Maven][1] on Linux. 
 
 You can watch the entire installation demo in this video.
 
@@ -20,7 +20,7 @@ You can watch the entire installation demo in this video.
 
 ## Introduction
 
-[Apache Maven](https://maven.apache.org/) is the most popular build and project management tool for Java projects. Maven is built on top of Java, so if you plan to install Maven on your system, you need to have Java installed on your system.
+[Apache Maven][1] is the most popular build and project management tool for Java projects. Maven is built on top of Java, so if you plan to install Maven on your system, you need to have Java installed on your system.
 
 Installation of Maven on any system consists of following 3 steps.
 
@@ -37,9 +37,13 @@ Let me walk you through these steps in detail for a Linux system.
 
 ### 1. Downloading the Apache Maven
 
-The first step is to download the [Apache Maven](https://maven.apache.org/) from the official website. The downloads page for Apache Maven is this - https://maven.apache.org/download.cgi. On this page, you have two binary options to download - either a zip file or a tar.gz file(marked in blue boxes). Here is the screenshot below.
+The first step is to download the [Apache Maven][1] from the official website. The downloads page for Apache Maven is this - https://maven.apache.org/download.cgi. On this page, you have two binary options to download - either a zip file or a tar.gz file(marked in blue boxes). Here is the screenshot below.
 
-![Apache Maven Download Files](/images/2020/08/001-maven-install-linux-mac/maven-downloads-binary.png)
+{{< rawhtml >}}
+<div class="image">
+    <img src="/images/2020/08/001-maven-install-linux-mac/maven-downloads-binary.png" alt="Maven Downloads Binary" />
+</div>
+{{< /rawhtml >}}
 
 You can chose either of these. If you are not sure, chose the zip file. Also, download the corresponding checksum file(marked in orange boxes) so that you can validate the zip file download.
 
@@ -71,7 +75,7 @@ total 9384
 #### 2.1. Verifying the Checksum
 Before you extract the zip or tar.gz file, perform a quick checksum validation of the downloaded file to ensure that there were no issues with the download.
 
-The checksum files mentions which kind of hash is used for zip file. Its sha512, and hence we need [`sha512sum`](https://linux.die.net/man/1/sha512sum) command to calculate the checksum of the zip file. This command is part of `coreutils` package and if you don't have install, you can install it with your package manager. Here is a [list of installation commands](https://command-not-found.com/sha512sum) for installing coreutils on your Linux distribution.
+The checksum files mentions which kind of hash is used for zip file. Its sha512, and hence we need [`sha512sum`][2] command to calculate the checksum of the zip file. This command is part of `coreutils` package and if you don't have install, you can install it with your package manager. Here is a [list of installation commands][3] for installing [`coreutils`][4] on your Linux distribution.
 
 ```
 -> sha512sum apache-maven-3.6.3-bin.zip
@@ -168,9 +172,14 @@ And now if you run `mvn -version`, you should see the Maven installation details
 
 Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f)
 Maven home: /home/codejournal/installed/maven3/latest
-Java version: 1.8.0_265, vendor: Private Build, runtime: /usr/lib/jvm/java-8-openjdk-amd64/jre
+Java version: 11.0.10, vendor: Ubuntu, runtime: /usr/lib/jvm/java-11-openjdk-amd64
 Default locale: en_US, platform encoding: UTF-8
-OS name: "linux", version: "4.15.0-117-generic", arch: "amd64", family: "unix"
+OS name: "linux", version: "5.4.0-70-generic", arch: "amd64", family: "unix"
 ```
 
 Now, you can start to run your builds locally with Maven on your Linux system.
+
+  [1]: https://maven.apache.org/
+  [2]: https://linux.die.net/man/1/sha512sum
+  [3]: https://command-not-found.com/sha512sum
+  [4]: https://www.gnu.org/software/coreutils/manual/html_node/index.html

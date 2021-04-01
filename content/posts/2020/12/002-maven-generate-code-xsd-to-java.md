@@ -23,7 +23,7 @@ Below is the video which demos generating Java classes from XSD.
 
 ## XSD to Java
 
-In the [previous article](/2020/11/generating-code-using-maven-java-to-xsd/), we saw how we can generate the XSD schema file from Java classes that we can give to our clients or consumers, so that they can know what is the structure of XML data they will be processing.
+In the [previous article][8], we saw how we can generate the XSD schema file from Java classes that we can give to our clients or consumers, so that they can know what is the structure of XML data they will be processing.
 
 {{< rawhtml >}}
 <div class="image">
@@ -82,7 +82,7 @@ We have `pom.xml` exists with bare minimum configuration below. It has project c
 </project>
 ```
 
-Another file is the `schema1.xsd` that we created in the [previous article](/2020/11/generating-code-using-maven-java-to-xsd/). Here are the contents of the XSD file.
+Another file is the `schema1.xsd` that we created in the [previous article][8]. Here are the contents of the XSD file.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -421,3 +421,4 @@ The [working code][7] is available on github for reference.
  [5]: https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
  [6]: https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl
  [7]: https://github.com/the-code-journal/maven-for-beginners/tree/main/004-generate-code-xsd-to-java/final
+ [8]: /2020/11/generating-code-using-maven-java-to-xsd/
