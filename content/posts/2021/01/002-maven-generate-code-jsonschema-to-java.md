@@ -340,7 +340,7 @@ The [working code][6] is available on github for reference.
 
   [1]: https://json-schema.org/
   [2]: /2021/01/generating-code-using-maven-java-to-json-schema/
-  [3]: https://github.com/the-code-journal/maven-for-beginners/raw/main/006-generate-code-json-schema-to-java/maven-generate-code-json-schema-to-java.zip
+  [3]: https://github.com/the-code-journal/maven-for-beginners/tree/main/006-generate-code-json-schema-to-java/initial
   [4]: https://github.com/joelittlejohn/jsonschema2pojo/wiki/Getting-Started#the-maven-plugin
   [5]: http://www.jsonschema2pojo.org/
   [6]: https://github.com/the-code-journal/maven-for-beginners/tree/main/006-generate-code-json-schema-to-java/final

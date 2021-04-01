@@ -480,7 +480,7 @@ The [working code][5] is available on github for reference.
   [7]: https://swagger.io/
   [8]: https://swagger.io/tools/swagger-ui/
   [9]: https://github.com/swagger-api/swagger-codegen
- [10]: https://github.com/the-code-journal/maven-for-beginners/raw/main/008-generate-code-swagger-to-java/maven-generate-code-swagger-to-java.zip
+ [10]: https://github.com/the-code-journal/maven-for-beginners/tree/main/008-generate-code-swagger-to-java/initial
  [11]: https://github.com/swagger-api/swagger-codegen/tree/master/modules/swagger-codegen-maven-plugin
  [12]: https://github.com/swagger-api/swagger-codegen/tree/3.0.0/modules/swagger-codegen-maven-plugin
  [13]: /2020/11/maven-lifecycles/

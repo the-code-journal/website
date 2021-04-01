@@ -414,7 +414,7 @@ The [working code][13] is available on github for reference.
   [1]: https://en.wikipedia.org/wiki/SOAP
   [2]: https://en.wikipedia.org/wiki/Web_Services_Description_Language
   [3]: https://javaee.github.io/jaxb-v2/
-  [4]: https://github.com/the-code-journal/maven-for-beginners/raw/main/007-generate-code-wsdl-to-java/maven-generate-code-wsdl-to-java.zip
+  [4]: https://github.com/the-code-journal/maven-for-beginners/tree/main/007-generate-code-wsdl-to-java/initial
   [5]: https://www.dataaccess.com/webservicesserver/NumberConversion.wso
   [6]: https://www.dataaccess.com/webservicesserver/NumberConversion.wso?WSDL
   [7]: https://cxf.apache.org/index.html
