@@ -11,7 +11,7 @@ categories: [ "DevOps", "Maven", "Tools" ]
 
 
 
-In the [previous article](/2020/11/maven-lifecycles/), we discussed about the Maven Lifecycles and the phases in them. We also got to know that Maven provides default plugin mappings to make builds faster without too much configuration. However, many a times, the build steps need to be customized to fulfill the needs of the project. That is when you need to map plugins to lifecycle phases to make your builds work for your requirements.
+In the [previous article][11], we discussed about the Maven Lifecycles and the phases in them. We also got to know that Maven provides default plugin mappings to make builds faster without too much configuration. However, many a times, the build steps need to be customized to fulfill the needs of the project. That is when you need to map plugins to lifecycle phases to make your builds work for your requirements.
 
 Here is the video showing how you can configure a plugin to a Lifecycle Phase.
 
@@ -299,7 +299,7 @@ We added another mapping for `clean` phase. Now, Maven will be executing the def
 The [working code][10] is available on github for reference.
 
 
- [1]: https://github.com/the-code-journal/maven-for-beginners/raw/main/002-custom-lifecycle-mappings/maven-for-beginners-custom-lifecycle-mappings.zip
+ [1]: https://github.com/the-code-journal/maven-for-beginners/tree/main/002-custom-lifecycle-mappings/initial
  [2]: https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.tml#lifecycle-reference
  [3]: https://maven.apache.org/plugins/maven-clean-plugin/
  [4]: https://ant.apache.org/manual/tasksoverview.html
@@ -309,3 +309,4 @@ The [working code][10] is available on github for reference.
  [8]: https://maven.apache.org/pom.html#build
  [9]: https://maven.apache.org/guides/mini/guide-configuring-plugins.html#configuring-build-plugins
 [10]: https://github.com/the-code-journal/maven-for-beginners/tree/main/002-custom-lifecycle-mappings/final
+[11]: /2020/11/maven-lifecycles/

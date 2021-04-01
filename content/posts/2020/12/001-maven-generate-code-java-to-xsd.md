@@ -311,7 +311,7 @@ The [working code][5] is available on github for reference.
 
 
  [1]: https://javaee.github.io/jaxb-v2/
- [2]: https://github.com/the-code-journal/maven-for-beginners/raw/main/003-generate-code-java-to-xsd/maven-generate-code-java-to-xsd.zip
+ [2]: https://github.com/the-code-journal/maven-for-beginners/tree/main/003-generate-code-java-to-xsd/initial
  [3]: https://github.com/mojohaus/jaxb2-maven-plugin
  [4]: https://www.mojohaus.org/jaxb2-maven-plugin/Documentation/v2.5.0/plugin-info.html
  [5]: https://github.com/the-code-journal/maven-for-beginners/tree/main/003-generate-code-java-to-xsd/final

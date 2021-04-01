@@ -414,7 +414,7 @@ public class Runner {
 The [working code][7] is available on github for reference.
 
 
- [1]: https://github.com/the-code-journal/maven-for-beginners/raw/main/004-generate-code-xsd-to-java/maven-generate-code-xsd-to-java.zip
+ [1]: https://github.com/the-code-journal/maven-for-beginners/raw/main/004-generate-code-xsd-to-java/initial
  [2]: https://github.com/mojohaus/jaxb2-maven-plugin
  [3]: https://docs.oracle.com/javase/9/docs/api/deprecated-list.html
  [4]: https://www.oracle.com/java/technologies/javase/jdk-11-relnote.html#JDK-8190378

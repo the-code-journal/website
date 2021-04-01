@@ -339,6 +339,6 @@ The [working code][6] is available on github for reference.
   [1]: https://json-schema.org/
   [2]: https://www.json.org/json-en.html
   [3]: /2020/12/generating-code-using-maven-java-to-xsd/
-  [4]: https://github.com/the-code-journal/maven-for-beginners/raw/main/005-generate-code-java-to-json-schema/maven-generate-code-java-to-json-schema.zip
+  [4]: https://github.com/the-code-journal/maven-for-beginners/tree/main/005-generate-code-java-to-json-schema/initial
   [5]: https://github.com/gravitee-io/json-schema-generator-maven-plugin
   [6]: https://github.com/the-code-journal/maven-for-beginners/tree/main/005-generate-code-java-to-json-schema/final

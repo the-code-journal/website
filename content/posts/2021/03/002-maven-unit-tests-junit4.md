@@ -1,8 +1,8 @@
 ---
 date: 2021-03-12
 linktitle: Unit Testing in Maven - Junit4 Tests
-next: /2020/08/install-apache-maven-on-linux/
-prev: /2021/03/unit-testing-in-maven-junit4-tests/
+next: /2021/03/unit-testing-in-maven-junit5-tests/
+prev: /2021/03/unit-testing-in-maven-pojo-tests/
 title: Unit Testing in Maven - Junit4 Tests
 weight: 10
 tags: [ "maven", "devops", "tools"]
@@ -167,7 +167,7 @@ Running tearDown...
 The [working code][11] is available on github for reference.
 
 
-  [1]: /2021/03/unit-testing-in-maven-junit4-tests/
+  [1]: /2021/03/unit-testing-in-maven-pojo-tests/
   [2]: https://junit.org/
   [3]: https://junit.org/junit5/
   [4]: https://junit.org/junit5/docs/5.0.0/user-guide/#release-notes-5.0.0
