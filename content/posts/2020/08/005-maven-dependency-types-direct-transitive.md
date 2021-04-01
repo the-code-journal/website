@@ -54,6 +54,7 @@ While working with Maven dependencies, you will deal with either **Direct** depe
 ### Direct Dependencies
 These dependencies are configured directly in your Project Object Model(pom.xml). You explicity state which dependency your project needs by providing their co-ordinates(`groupId, artifactId, version`).
 
+
 ### Transitive Dependencies
 Transitive Dependencies are the ones that you DO NOT configure in your Project Object Model(pom.xml), and gets pulled because your Direct dependencies rely on those.
 
@@ -65,20 +66,21 @@ Transitive Dependencies are the ones that you DO NOT configure in your Project O
 
 ## Lets understand this with an example.
 
-Below is a dependency configuration for [junit](https://junit.org/junit5/) that you will put in `pom.xml` to add it to your project
+Below is a dependency configuration for [junit][1] that you will put in `pom.xml` to add it to your project
 
 ```xml
-...
-<dependency>
-  <groupId>junit</groupId>
-  <artifactId>junit</artifactId>
-  <version>4.11</version>
-</dependency>
-...
-
+<dependencies>
+  [...]
+  <dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13.2</version>
+  </dependency>
+  [...]
+</dependencies>
 ```
 
-Because, we have configured `junit` directly in our `pom.xml`, it will be our **"Direct"** dependency. So, maven will download the junit jar file and add it to your project.
+Because, we have configured [`junit`][1] directly in our `pom.xml`, it will be our **"Direct"** dependency. So, maven will download the junit jar file and add it to your project.
 
 {{< rawhtml >}}
 <div class="notification">
@@ -88,10 +90,9 @@ Because, we have configured `junit` directly in our `pom.xml`, it will be our **
 
 
 
-You can use [`maven-dependency-plugin`](https://maven.apache.org/plugins/maven-dependency-plugin/) to get the list of all dependencies of your project. The command you need to run is `mvn dependency:tree`.
+You can use [`maven-dependency-plugin`][2] to get the list of all dependencies of your project. The command you need to run is `mvn dependency:tree`.
 
-Here is the output from a project that has just `junit` added to its `pom.xml`.
-
+Here is the output from a project that has just [`junit`][1] added to its `pom.xml`.
 
 {{< rawhtml >}}
 <pre class="code-output">
@@ -101,14 +102,11 @@ Here is the output from a project that has just `junit` added to its `pom.xml`.
 [INFO] ---------< io.codejournal.maven:dependency-management-simple >----------
 [INFO] Building dependency-management-simple 1.0
 [INFO] --------------------------------[ jar ]---------------------------------
-[INFO] 
-
 
 [INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ dependency-management-simple ---
 [INFO] io.codejournal.maven:dependency-management-simple:jar:1.0
 [INFO] \- junit:junit:jar:4.11:compile
 [INFO]    \- org.hamcrest:hamcrest-core:jar:1.3:compile
-
 
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
@@ -119,11 +117,11 @@ Here is the output from a project that has just `junit` added to its `pom.xml`.
 </pre>
 {{< /rawhtml >}}
 
-I have split the relevant section of the `maven-dependency-plugin` in the output to make things stand out.
+I have split the relevant section of the [`maven-dependency-plugin`][2] in the output to make things stand out.
 
-If you look closely the dependency tree, the project `dependency-management-simple` has `junit` as its dependency, but `junit` itself needs `hamcrest-core`, which is a sub-tree under `junit`.
+If you look closely the dependency tree, the project `dependency-management-simple` has [`junit`][1] as its dependency, but [`junit`][1] itself needs [`hamcrest-core`][3], which is a sub-tree under [`junit`][1].
 
-This `hamcrest-core` is thus, your **"Transitive"** dependency for project `dependency-management-simple`. It got included without you specifying it explicitly, because `junit` is in-turn dependent on it.
+This [`hamcrest-core`][3] is thus, your **"Transitive"** dependency for project `dependency-management-simple`. It got included without you specifying it explicitly, because [`junit`][1] is in-turn dependent on it.
 
 Here they are annotated in the logs.
 
@@ -134,3 +132,7 @@ Here they are annotated in the logs.
 [INFO]    \- org.hamcrest:hamcrest-core:jar:1.3:compile             #    \- Transitive Dependency
 </pre>
 {{< /rawhtml >}}
+
+  [1]: https://mvnrepository.com/artifact/junit/junit
+  [2]: https://maven.apache.org/plugins/maven-dependency-plugin/
+  [3]: https://mvnrepository.com/artifact/org.hamcrest/hamcrest-core

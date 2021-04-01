@@ -102,12 +102,12 @@ Maven uses the combination of `groupId, artifactId`, and `version` as coordinate
 - `artifactId` - eepresents the product or module within the project group.
 - `version` - The version of the artifact or the project module.
 
-Let's take example of [junit](https://mvnrepository.com/artifact/junit/junit) dependency with coordinates - `groupId(javax.servlet), artifactId(servlet-api), version(2.5)`, here is how they are available on the local maven repository.
+Let's take example of [servlet-api][1] dependency with coordinates - `groupId(javax.servlet), artifactId(servlet-api), version(2.5)`, here is how they are available on the local maven repository.
 
 {{< rawhtml >}}
 <pre class="code-output">
 [codejournal@codejournal-box ~/.m2/repository]
--> tree javax
+-> tree ~/.m2/repository/javax
 javax
 └── servlet
     └── servlet-api
@@ -128,13 +128,15 @@ That is how, Maven uses the coordinates to locate the jar file for the dependenc
 
 
 
+
+
 {{< articlead >}}
 
 ## Adding a Maven Dependency to POM
 
 To include a dependency in your application, you need to configure the Maven coordinate of your dependency in the `<dependencies>` section of your `pom.xml`.
 
-Here is an example with full POM for adding [Google Guava](https://github.com/google/guava) dependency in your project.
+Here is an example with full POM for adding [Google Guava][2] dependency in your project.
 
 ```xml
 <dependency>
@@ -144,7 +146,7 @@ Here is an example with full POM for adding [Google Guava](https://github.com/go
 </dependency>
 ```
 
-To create a simple Maven project, watch our earlier tutorial - [First Build with Maven - Command Prompt](/2020/08/first-build-with-apache-maven-command-prompt).
+To create a simple Maven project, watch our earlier tutorial - [First Build with Maven - Command Prompt][3].
 
 Here is the full `pom.xml`.
 
@@ -163,8 +165,8 @@ Here is the full `pom.xml`.
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -211,3 +213,8 @@ If you run `mvn dependency:tree`, the output confirms the inclusion.
 [INFO] ------------------------------------------------------------------------
 </pre>
 {{< /rawhtml >}}
+
+
+  [1]: https://mvnrepository.com/artifact/javax.servlet/servlet-api
+  [2]: https://github.com/google/guava
+  [3]: /2020/08/first-build-with-apache-maven-command-prompt

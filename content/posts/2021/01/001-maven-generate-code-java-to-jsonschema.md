@@ -55,7 +55,7 @@ If you compare the XML and JSON representation of the employee data here, you ca
 
 #### Bytes used
 
-The dense and sparse nature of these files also reflects in the amount of bytes used. While the example here in XML takes about `166 bytes`, the same JSON data uses only `139 bytes`(about [**19% smaller**]()). And with more data(tens and thousands of employees or even more), XML data usually gets really really big, while the same JSON representation is much smaller.
+The dense and sparse nature of these files also reflects in the amount of bytes used. While the example here in XML takes about `166 bytes`, the same JSON data uses only `139 bytes`(about [**19% smaller**](#json)). And with more data(tens and thousands of employees or even more), XML data usually gets really really big, while the same JSON representation is much smaller.
 
 There are more things that we can compare, but these two are striking difference between XML and JSON. Also, that is why JSON has become really popular these days and as a preferable data-exchange format.
 

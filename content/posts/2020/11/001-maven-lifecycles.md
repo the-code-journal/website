@@ -11,7 +11,7 @@ categories: [ "DevOps", "Maven", "Tools" ]
 
 
 
-[Maven Lifecycle](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html) is the core of how Maven build the projects. If you are building a project, you are essentially running a Maven lifecycle. In this article, we will understand the lifecycles, phases and plugin goals, and how this combination enables Maven to build your projects with enormous flexibility.
+[Maven Lifecycle][1] is the core of how Maven build the projects. If you are building a project, you are essentially running a Maven lifecycle. In this article, we will understand the lifecycles, phases and plugin goals, and how this combination enables Maven to build your projects with enormous flexibility.
 
 Here is the video explaining these.
 
@@ -57,7 +57,7 @@ Similarly, Maven builds also have a lifecycle. There are pre-defined stages in w
 
 A Maven build life-cycle consists of predefined stages called `phases`. Their order of execution is also pre-defined. That way, you know which phase is executed first and which one is executed last. Each phase has clearly defined purpose.
 
-We already learnt in our [first video](https://www.youtube.com/embed/JgFXdAmWoxQ), that whatever maven executes, it executes it from a plugin. To be more specific, when we say maven is executing a plugin, what maven is actually executing is a `goal` from that plugin.
+We already learnt in our [first video][2], that whatever maven executes, it executes it from a plugin. To be more specific, when we say maven is executing a plugin, what maven is actually executing is a `goal` from that plugin.
 
 A plugin goal represents a specific task which contributes to the building and managing of a project. In other words, a goal is simply a set of commands or instructions that maven can run to perform a task. A maven plugin can have one or more goals based on how much functionality a maven plugin provides. Maven plugins are very targeted, that means they strive to perform one and only one specific function for which they are written.
 
@@ -86,7 +86,7 @@ When all the phases are completed, Maven has executed the lifecycle and the buil
 
 ## Maven Lifecycles
 
-Maven has just [three lifecycles](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#lifecycle-reference) defined - `clean`, `default` and `site`. You can add your own custom one, but that would be hardly necessary. These three should suffice for all your build requirements.
+Maven has just [three lifecycles][3] defined - `clean`, `default` and `site`. You can add your own custom one, but that would be hardly necessary. These three should suffice for all your build requirements.
 
 `clean` lifecycle is responsible for cleaning up your project for a new build. Any files that were generated in previous build are removed during this lifecycle. Maven, by default, has plugin mapping for this lifecycle with `maven-clean-plugin`. So, you don’t need to configure anything from your side; another example of Maven’s convention over configuration. When you run this lifecycle, maven will automatically use `maven-compile plugin` to perform the cleanup of your project. This lifecycle is also independent of your project type - pom, jar, war, etc.
 
@@ -106,7 +106,7 @@ Let’s look at the various phases in each of these lifecycles.
 
 The `clean` lifecycle is comprised of just three phase - `pre-clean, clean` and `post-clean` and they are executed in the same order.
 
-Of the three lifecycle phases, the `clean` phase has binding to `clean` goal of [`maven-clean-plugin`](https://maven.apache.org/plugins/maven-clean-plugin/). This goal deletes your previous build directory, essentially cleaning it, so that you are ready to build your project from scratch. 
+Of the three lifecycle phases, the `clean` phase has binding to `clean` goal of [`maven-clean-plugin`][4]. This goal deletes your previous build directory, essentially cleaning it, so that you are ready to build your project from scratch. 
 
 If you see there are a lot of clean keywords here, so a lot of times clean lifecycle, clean phase and clean goal are used interchangeably quite a lot. And that is ok as long as you are not getting into nitty gritty details. Just know that clean lifecycle, clean phase and clean goal are all different.
 
@@ -161,7 +161,7 @@ The next set of phases in order relates to compilation of application class file
 - `compile`
 - `post-compile`
 
-The first phase in this is `generate-sources` and it is intended for generation of application code that is included during the compilation. For example, generation of class files from a SOAP WSDL using [cxf-plugin](https://cxf.apache.org/docs/maven-cxf-codegen-plugin-wsdl-to-java.html).
+The first phase in this is `generate-sources` and it is intended for generation of application code that is included during the compilation. For example, generation of class files from a SOAP WSDL using [cxf-plugin][5].
 
 `process-sources` is intended for additional processing of generated source code. This phase usually complements with `generate-sources` phase.
 
@@ -272,7 +272,7 @@ Here are the default plugin mappings for it.
 | `install`                | maven-install-plugin    | `install:install`         |
 | `deploy`                 | maven-deploy-plugin     | `deploy:deploy`           |
 
-We have [`maven-resources-plugin`](https://maven.apache.org/plugins/maven-resources-plugin/) which processes the application and test resources, [`maven-compile-plugin`](https://maven.apache.org/plugins/maven-compiler-plugin/) which compiles the application code and test files. Tests are run using the [`maven-surefile-plugin`](https://maven.apache.org/surefire/maven-surefire-plugin/) and packaging to a jar is done by [`maven-jar-plugin`](https://maven.apache.org/plugins/maven-jar-plugin/), and `install` and `deploy` phases are taken care by [`maven-install-plugin`](https://maven.apache.org/plugins/maven-install-plugin/) and [`maven-deploy plugin`](https://maven.apache.org/plugins/maven-deploy-plugin/) respectively.
+We have [`maven-resources-plugin`][6] which processes the application and test resources, [`maven-compile-plugin`][7] which compiles the application code and test files. Tests are run using the [`maven-surefile-plugin`][8] and packaging to a jar is done by [`maven-jar-plugin`][9], and `install` and `deploy` phases are taken care by [`maven-install-plugin`][10] and [`maven-deploy plugin`][11] respectively.
 
 
 
@@ -286,7 +286,7 @@ POM is another very common packaging type wherein you intend to have the project
 | `install`       | maven-install-plugin | `install:install`        |
 | `deploy`        | maven-deploy-plugin  | `deploy:deploy`          |
 
-The packaging isnt too complicated and [`maven-site plugin`](https://maven.apache.org/plugins/maven-site-plugin/) takes care of that, and `install` and `deploy` are again taken care byby [`maven-install-plugin`](https://maven.apache.org/plugins/maven-install-plugin/) and [`maven-deploy plugin`](https://maven.apache.org/plugins/maven-deploy-plugin/).
+The packaging isnt too complicated and [`maven-site plugin`][12] takes care of that, and `install` and `deploy` are again taken care byby [`maven-install-plugin`][10] and [`maven-deploy plugin`][11].
 
 
 
@@ -310,13 +310,13 @@ If you creating a Maven plugin itself, you will be essentially creating the jar 
 | `install`                | maven-install-plugin<br/>maven-plugin-plugin | `install:install`<br/>`plugin:updateRegistry`    |
 | `deploy`                 | maven-deploy-plugin                          | `deploy:deploy`                                  |
 
-To allow Maven recognize your jar as a Maven plugin, you need to provide some other metadata and Maven has goals mapped by default to generate this metadata. These are part of [`maven-plugin-plugin`](https://maven.apache.org/plugin-tools/maven-plugin-plugin/), to make your life easier.
+To allow Maven recognize your jar as a Maven plugin, you need to provide some other metadata and Maven has goals mapped by default to generate this metadata. These are part of [`maven-plugin-plugin`][13], to make your life easier.
 
 
 
 ### Lifecycle - default - Plugin Mappings(EJB)
 
-EJB stands for [Enterprise Java Beans](https://en.wikipedia.org/wiki/Jakarta_Enterprise_Beans). EJB projects are not very popular these days, but if you are working on an old application, it could have the packaging type as EJB. They are a common data access mechanism for model-driven development in Enterprise Java. Here is the full mapping for reference.
+EJB stands for [Enterprise Java Beans][14]. EJB projects are not very popular these days, but if you are working on an old application, it could have the packaging type as EJB. They are a common data access mechanism for model-driven development in Enterprise Java. Here is the full mapping for reference.
 
 | Lifecycle Phase          | Plugin                  | Goal                      |
 | ------------------------ | ----------------------- | ------------------------- |
@@ -329,7 +329,7 @@ EJB stands for [Enterprise Java Beans](https://en.wikipedia.org/wiki/Jakarta_Ent
 | `install`                | maven-install-plugin    | `install:install`         |
 | `deploy`                 | maven-deploy-plugin     | `deploy:deploy`           |
 
-EJB plugin mappings are also very similar to JAR, the only difference being that during the `package` phase, it uses [`maven-ejb-plugin`](https://maven.apache.org/plugins/maven-ejb-plugin/) instead of [`maven-jar-plugin`](https://maven.apache.org/plugins/maven-jar-plugin/). Maven supports for both EJB2 and EJB3, and by default it is configured to look for files as per EJB2 specifications.
+EJB plugin mappings are also very similar to JAR, the only difference being that during the `package` phase, it uses [`maven-ejb-plugin`][15] instead of [`maven-jar-plugin`][9]. Maven supports for both EJB2 and EJB3, and by default it is configured to look for files as per EJB2 specifications.
 
 
 
@@ -348,7 +348,7 @@ WAR packaging is again similar to JAR and EJBs. These are Web Applications that 
 | `install`                | maven-install-plugin    | `install:install`         |
 | `deploy`                 | maven-deploy-plugin     | `deploy:deploy`           |
 
-Again, the difference here is the use of [`maven-war-plugin`](https://maven.apache.org/plugins/maven-war-plugin/) instead of [`maven-jar-plugin`](https://maven.apache.org/plugins/maven-jar-plugin/) or [`maven-ejb-plugin`](https://maven.apache.org/plugins/maven-ejb-plugin/).
+Again, the difference here is the use of [`maven-war-plugin`][16] instead of [`maven-jar-plugin`][9] or [`maven-ejb-plugin`][15].
 
 
 
@@ -370,8 +370,24 @@ First one is `pre-site`. It allows you to prepare the project files for generati
 
 Once the project site is built, you might want to do some post processing(like minify css and javascript) and it can done on `post-site` phase. And finally, you can deploy your site to your web server in the `site-deploy` phase.
 
-By default, [`maven-site-plugin`](https://maven.apache.org/plugins/maven-site-plugin/) has bindings to `site` and `site-deploy` phases, that you can configure to build and deploy your site.
-
-
+By default, [`maven-site-plugin`][12] has bindings to `site` and `site-deploy` phases, that you can configure to build and deploy your site.
 
 And that is pretty much all about Maven Lifecycles.
+
+
+  [1]: https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
+  [2]: https://www.youtube.com/embed/JgFXdAmWoxQ
+  [3]: https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#lifecycle-reference
+  [4]: https://maven.apache.org/plugins/maven-clean-plugin/
+  [5]: https://cxf.apache.org/docs/maven-cxf-codegen-plugin-wsdl-to-java.html
+  [6]: https://maven.apache.org/plugins/maven-resources-plugin/
+  [7]: https://maven.apache.org/plugins/maven-compiler-plugin/
+  [8]: https://maven.apache.org/surefire/maven-surefire-plugin/
+  [9]: https://maven.apache.org/plugins/maven-jar-plugin/
+ [10]: https://maven.apache.org/plugins/maven-install-plugin/
+ [11]: https://maven.apache.org/plugins/maven-deploy-plugin/
+ [12]: https://maven.apache.org/plugins/maven-site-plugin/
+ [13]: https://maven.apache.org/plugin-tools/maven-plugin-plugin/
+ [14]: https://en.wikipedia.org/wiki/Jakarta_Enterprise_Beans
+ [15]: https://maven.apache.org/plugins/maven-ejb-plugin/
+ [16]: https://maven.apache.org/plugins/maven-war-plugin/

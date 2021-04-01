@@ -9,7 +9,7 @@ tags: [ "maven", "devops", "tools"]
 categories: [ "DevOps", "Maven", "Tools" ]
 ---
 
-This articles gives you a step by step walkthrough for installing [Apache Maven](https://maven.apache.org/) on Mac.
+This articles gives you a step by step walkthrough for installing [Apache Maven][1] on Mac.
 
 You can watch the entire installation demo in this video.
 
@@ -21,7 +21,7 @@ You can watch the entire installation demo in this video.
 
 ## Introduction
 
-[Apache Maven](https://maven.apache.org/) is the most popular build and project management tool for Java projects. Maven is built on top of Java, so if you plan to install Maven on your system, you need to have Java installed on your system.
+[Apache Maven][1] is the most popular build and project management tool for Java projects. Maven is built on top of Java, so if you plan to install Maven on your system, you need to have Java installed on your system.
 
 Installation of Maven on any system consists of following 3 steps.
 
@@ -37,9 +37,13 @@ Let me walk you through these steps in detail for a Mac system.
 
 ### 1. Downloading the Apache Maven
 
-The first step is to download the [Apache Maven](https://maven.apache.org/) from the official website. The downloads page for Apache Maven is this - https://maven.apache.org/download.cgi. On this page, you have two binary options to download - either a zip file or a tar.gz file(marked in blue boxes). Here is the screenshot below.
+The first step is to download the [Apache Maven][1] from the official website. The downloads page for Apache Maven is this - https://maven.apache.org/download.cgi. On this page, you have two binary options to download - either a zip file or a tar.gz file(marked in blue boxes). Here is the screenshot below.
 
-![Apache Maven Download Files](/images/001-maven-install-linux-mac/maven-downloads-binary.png)
+{{< rawhtml >}}
+<div class="image">
+    <img src="/images/001-maven-install-linux-mac/maven-downloads-binary.png" alt="Maven Downloads Binary" />
+</div>
+{{< /rawhtml >}}
 
 You can chose either of these. If you are not sure, chose the zip file. Also, download the corresponding checksum file(marked in orange boxes) so that you can validate the zip file download.
 
@@ -72,7 +76,7 @@ total 9384
 #### 2.1. Verifying the Checksum
 Before you extract the zip or tar.gz file, perform a quick checksum validation of the downloaded file to ensure that there were no issues with the download.
 
-The checksum files mentions which kind of hash is used for zip file. Its sha512, and hence we need [`sha512sum`](https://linux.die.net/man/1/sha512sum) command to calculate the checksum of the zip file. This command is part of `coreutils` package and if you don't have install, you can install it with `brew install coreutils`.
+The checksum files mentions which kind of hash is used for zip file. Its sha512, and hence we need [`sha512sum`][2] command to calculate the checksum of the zip file. This command is part of [`coreutils`][3] package and if you don't have install, you can install it with `brew install coreutils`.
 
 ```
 -> sha512sum apache-maven-3.6.3-bin.zip
@@ -175,3 +179,8 @@ OS name: "mac os x", version: "4.15.0-117-generic", arch: "amd64", family: "mac"
 ```
 
 Now, you can start to run your builds locally with Maven on your Mac system.
+
+
+  [1]: https://maven.apache.org/
+  [2]: https://linux.die.net/man/1/sha512sum
+  [3]: https://www.gnu.org/software/coreutils/manual/html_node/index.html

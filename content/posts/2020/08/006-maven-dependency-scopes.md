@@ -50,23 +50,24 @@ Maven scopes apply to your dependencies and they define where your dependency la
 How do we define the scope of a dependency? We use the xml tag - `scope` in the dependency configuration like this.
 
 ```xml
-...
-<dependency>
-  <groupId>junit</groupId>
-  <artifactId>junit</artifactId>
-  <version>4.11</version>
-  <scope>test</scope>
-</dependency>
-...
+<dependencies>
+  [...]
+  <dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13.2</version>
+  </dependency>
+  [...]
+</dependencies>
 ```
 
 Maven provides us with six dependency scopes. These are
-- [compile](#maven-scope---compile)
-- [test](#maven-scope---test)
-- [runtime](#maven-scope---runtime)
-- [provided](#maven-scope---provided)
-- [system](#maven-scope---system)
-- [import](#maven-scope---import)
+- [compile][1]
+- [test][2]
+- [runtime][3]
+- [provided][4]
+- [system][5]
+- [import][6]
 
 Let's talk about these one by one.
 
@@ -118,7 +119,7 @@ For example, almost all the Java Application servers or Java web servers, have `
 
 As `provided` scope expects the dependency to be available in the runtime environment, hence, the dependency is only available on `compile-classpath` and `test-classpth`, and NOT on `run-classpath`(because runtime environment already provides it).
 
-Below is the snapshot of the `lib` directory of [Tomcat](https://tomcat.apache.org) and [Jetty](https://www.eclipse.org/jetty), and as you can see, both of these have `servlet-api` dependency.
+Below is the snapshot of the `lib` directory of [Tomcat][7] and [Jetty][8], and as you can see, both of these have [`servlet-api`][9] dependency.
 
 {{< rawhtml >}}
 <pre class="code-output">
@@ -157,15 +158,17 @@ Similarly, if there is another dependency that is available in your application 
 You need to specify where this dependency exist in your local filesystem using additional tag - `systemPath`, where you give the path to the dependency.
 
 ```xml
-...
-<dependency>
-  <groupId>com.company</groupId>
-  <artifactId>very-secret</artifactId>
-  <version>1.0</version>
-  <scope>system</scope>
-  <systemPath>/usr/lib/very-secret-1.0.jar</systemPath>
-</dependency>
-...
+<dependencies>
+  [...]
+  <dependency>
+    <groupId>com.company</groupId>
+    <artifactId>very-secret</artifactId>
+    <version>1.0</version>
+    <scope>system</scope>
+    <systemPath>/usr/lib/very-secret-1.0.jar</systemPath>
+  </dependency>
+  [...]
+</dependencies>
 ```
 
 Here in the example, the path to the dependency is `/usr/lib` and inside this directory, we have our dependency `very-secret 1.0.jar`.
@@ -185,15 +188,15 @@ Last one is - `import`. And this scope is defined a little differently. This is 
 ```xml
 ...
 <dependencyManagement>
- <dependencies>
-  <dependency>
-    <groupId>com.company</groupId>
-    <artifactId>project-deps</artifactId>
-    <version>1.0</version>
-    <scope>import</scope>
-    <type>pom</type>
-  </dependency>
- </dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>com.company</groupId>
+      <artifactId>project-deps</artifactId>
+      <version>1.0</version>
+      <scope>import</scope>
+      <type>pom</type>
+    </dependency>
+  </dependencies>
 </dependencyManagement>
 ...
 ```
@@ -339,3 +342,14 @@ Also, these transitive dependencies are marked as `provided` scoped when they ar
     <img src="/images/2020/08/006-maven-scopes/maven-scope-transitivity-provided.png" alt="Transitive Dependency for Maven Scope - Provided" />
 </div>
 {{< /rawhtml >}}
+
+
+  [1]: #maven-scope---compile
+  [2]: #maven-scope---test
+  [3]: #maven-scope---runtime
+  [4]: #maven-scope---provided
+  [5]: #maven-scope---system
+  [6]: #maven-scope---import
+  [7]: https://tomcat.apache.org
+  [8]: https://www.eclipse.org/jetty
+  [9]: https://mvnrepository.com/artifact/javax.servlet/servlet-api
