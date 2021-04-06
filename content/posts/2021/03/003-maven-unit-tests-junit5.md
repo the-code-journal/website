@@ -1,7 +1,7 @@
 ---
 date: 2021-03-31
 linktitle: Unit Testing in Maven - Junit5 Tests
-next: /2020/08/install-apache-maven-on-linux/
+next: /2021/04/unit-testing-in-maven-migrating-from-junit-4-to-junit5-tests/
 prev: /2021/03/unit-testing-in-maven-junit4-tests/
 title: Unit Testing in Maven - Junit5 Tests
 weight: 10
