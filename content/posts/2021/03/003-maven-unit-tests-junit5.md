@@ -161,17 +161,8 @@ public class RunnerTest {
 
     @Test
     public void sumReturnsCorrectResult() {
-
         System.out.println("Running sumReturnsCorrectResult...");
-
-        final int number1 = 3;
-        final int number2 = 5;
-
-        final int expected = 8;
-
-        final int actual = Runner.sum(number1, number2);
-
-        assertEquals(expected, actual);
+        assertEquals(8, Runner.sum(3, 5));
     }
 
     @After
@@ -269,17 +260,8 @@ public class RunnerTest {
 
     @Test
     public void sumReturnsCorrectResult() {
-
         System.out.println("Running sumReturnsCorrectResult...");
-
-        final int number1 = 3;
-        final int number2 = 5;
-
-        final int expected = 8;
-
-        final int actual = Runner.sum(number1, number2);
-
-        assertEquals(expected, actual);
+        assertEquals(8, Runner.sum(3, 5));
     }
 
     @AfterEach
