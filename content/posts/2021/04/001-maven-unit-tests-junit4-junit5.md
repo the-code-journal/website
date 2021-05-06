@@ -1,7 +1,7 @@
 ---
 date: 2021-04-06
 linktitle: Unit Testing in Maven - Migrating from Junit4 to Junit5 Tests
-next: /2020/08/install-apache-maven-on-linux/
+next: /2021/04/unit-testing-in-maven-testng-tests/
 prev: /2021/03/unit-testing-in-maven-junit5-tests/
 title: Unit Testing in Maven - Migrating from Junit 4 to Junit5 Tests
 weight: 10
@@ -132,17 +132,8 @@ public class RunnerTest {
 
     @Test
     public void sumReturnsCorrectResult() {
-
         System.out.println("Running sumReturnsCorrectResult...");
-
-        final int number1 = 3;
-        final int number2 = 5;
-
-        final int expected = 8;
-
-        final int actual = Runner.sum(number1, number2);
-
-        assertEquals(expected, actual);
+        assertEquals(8, Runner.sum(3, 5));
     }
 
     @After
@@ -245,17 +236,8 @@ public class RunnerJunit5Test {
 
     @Test
     public void sumReturnsCorrectResult() {
-
         System.out.println("Running sumReturnsCorrectResult...");
-
-        final int number1 = 3;
-        final int number2 = 5;
-
-        final int expected = 8;
-
-        final int actual = Runner.sum(number1, number2);
-
-        assertEquals(expected, actual);
+        assertEquals(8, Runner.sum(3, 5));
     }
 
     @AfterEach

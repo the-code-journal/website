@@ -75,17 +75,8 @@ Taking into account for requirements for [Pojo Test][6], below is the Pojo test 
 public class RunnerTest {
 
     public void testSum() {
-
         System.out.println("Running testSum1...");
-
-        final int number1 = 3;
-        final int number2 = 5;
-
-        final int expected = 8;
-
-        final int actual = Runner.sum(number1, number2);
-
-        assert actual == expected;
+        assert 8 == Runner.sum(3, 5);
     }
 }
 ```
