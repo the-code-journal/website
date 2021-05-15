@@ -1,7 +1,7 @@
 ---
 date: 2021-04-22
 linktitle: Unit Testing in Maven - TestNG tests
-next: /2020/08/install-apache-maven-on-linux/
+next: /2021/05/curious-case-of-modulo-operator/
 prev: /2021/04/unit-testing-in-maven-migrating-from-junit-4-to-junit5-tests/
 title: Unit Testing in Maven - TestNG Tests
 weight: 10
