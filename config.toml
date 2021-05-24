@@ -29,7 +29,7 @@ pygmentsUseClasses = true
   custom_css = ["/css/custom.css"]
 
   # Social accounts. Link to these accounts are displayed in the header and footer
-  #twitter = "Your Twitter username"
+  twitter = "thecodejournal1"
   #facebook = "Your Facebook username"
   #instagram = "Your Instagram username"
   github = "the-code-journal"
@@ -48,7 +48,7 @@ pygmentsUseClasses = true
   quora = "Code-Journal"
 
   # Disqus shortname
-  disqus = ""
+  disqus = "thecodejournal"
   author = ""
   authorwebsite = ""
   avatar = ""
@@ -59,8 +59,8 @@ pygmentsUseClasses = true
   subtitle = ""
 
   # Logo image. This is displayed ogp image.
-  logo = "/path/to/logo"
-  favicon = "/path/to/favicon"
+  logo = "/code-journal-avatar.png"
+  favicon = "/code-journal-avatar.png"
 
 [[menu.main]]
     name = "Blog"
