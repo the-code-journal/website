@@ -29,7 +29,7 @@ pygmentsUseClasses = true
   custom_css = ["/css/custom.css"]
 
   # Social accounts. Link to these accounts are displayed in the header and footer
-  twitter = "thecodejournal1"
+  twitter = "the_codejournal"
   #facebook = "Your Facebook username"
   #instagram = "Your Instagram username"
   github = "the-code-journal"
