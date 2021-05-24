@@ -8,6 +8,7 @@
       {{ if not .Params.hideDate }}
         <div class="c-time">
           {{ partial "timestamp.html" . }}
+          <a href="{{ .Permalink }}#disqus_thread"> Comments</a>
         </div>
       {{ end }}
       {{ range .Params.tags }}
