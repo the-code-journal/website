@@ -1,7 +1,7 @@
 ---
 date: 2021-05-15
 linktitle: Curious Case of Modulo Operator
-next: /2020/08/install-apache-maven-on-linux/
+next: /2021/05/build-it-with-spring-boot-crud-operations-part-1/
 prev: /2021/04/unit-testing-in-maven-testng-tests/
 title: Curious Case of Modulo Operator
 weight: 10
