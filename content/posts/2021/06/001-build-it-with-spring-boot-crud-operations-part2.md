@@ -136,7 +136,7 @@ And then let's add the below configuration in `application.yaml`
 ```yaml
 spring:
   application:
-    name: spring-boot-projects-mvc-jpa-thymeleaf
+    name: build-it-with-spring-boot-mvc-jpa-thymeleaf
   datasource:
     url: jdbc:h2:mem:student_db
     driver-class-name: org.h2.Driver
