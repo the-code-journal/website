@@ -37,3 +37,7 @@
 .article-ad {
     height: 50px;
 }
+
+a > code {
+    color: #6eb3f0;
+}
