@@ -58,7 +58,7 @@ A quick look at the [class diagram][4] of the [entities][5] of our application.
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="http://yuml.me/diagram/scruffy/class/%5BUser%7C-username:%20string;-password:string%7C+getters();+setters()%5D,%20%5BStudent%7C-id:%20UUID;-firstName:%20string;-lastName:%20string%7C+getters();+setters()%5D" alt="Build it with Spring Boot - CRUD Operation - Class Diagram" />
+    <img src="https://yuml.me/diagram/scruffy/class/%5BUser%7C-username:%20string;-password:string%7C+getters();+setters()%5D,%20%5BStudent%7C-id:%20UUID;-firstName:%20string;-lastName:%20string%7C+getters();+setters()%5D" alt="Build it with Spring Boot - CRUD Operation - Class Diagram" />
 </div>
 {{< /rawhtml >}}
 
@@ -68,7 +68,7 @@ Taking a look at the [Use Cases][6] for our application, we have following use c
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="http://yuml.me/diagram/scruffy/usecase/%5BUser%5D-(Login),%20%5BUser%5D-(List%20Students),%20%5BUser%5D-(View%20a%20Student),%20%5BUser%5D-(Add%20new%20student),%20%5BUser%5D-(Edit%20existing%20student),%20%5BUser%5D-(Delete%20student),%20%5BUser%5D-(Logout)" alt="Build it with Spring Boot - CRUD Operation - Use Case Diagram" />
+    <img src="https://yuml.me/diagram/scruffy/usecase/%5BUser%5D-(Login),%20%5BUser%5D-(List%20Students),%20%5BUser%5D-(View%20a%20Student),%20%5BUser%5D-(Add%20new%20student),%20%5BUser%5D-(Edit%20existing%20student),%20%5BUser%5D-(Delete%20student),%20%5BUser%5D-(Logout)" alt="Build it with Spring Boot - CRUD Operation - Use Case Diagram" />
 </div>
 {{< /rawhtml >}}
 
