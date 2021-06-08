@@ -1,7 +1,7 @@
 ---
 date: 2021-05-30
 linktitle: Build it with Spring Boot - CRUD Operations - Part 1
-next: /2020/08/install-apache-maven-on-linux/
+next: /2021/05/build-it-with-spring-boot-crud-operations-part-2/
 prev: /2021/05/curious-case-of-modulo-operator/
 title: Build it with Spring Boot - CRUD Operations - Part 1
 weight: 10
@@ -20,7 +20,15 @@ The project we are building here is a Spring Boot Web application that demonstra
 </div>
 {{< /rawhtml >}}
 
-This article is Part 1 of 5, in which we will boostrap our application from scratch and configure the Web Server. Below is the video for the same that guides you for this part.
+Here are all the articles of this series.
+
+- [**Part 1 (this article)**][19] - Introduction to the Application and Bootstrapping the application, and configure the Web Server.
+- [**Part 2**][20] - Configure the Database, create JPA Entities and JPA Repositories, Service classes and Junit tests for these
+- [**Part 3**][21] - Building the UI pages using Thymeleaf and Bootstrap
+- [**Part 4**][22] - Making the application work with UI pages, with data coming from Database
+- [**Part 5**][23] - Adding Login/Logout using Spring Security and closure
+
+In this article, we will boostrap our application from scratch and configure the Web Server. Below is the video for the same that guides you for this part.
 
 {{< yt "https://www.youtube.com/embed/SSqIvBrNMkY" >}}
 
@@ -40,13 +48,13 @@ And these are any application you can think of - Education systems, e-commerce, 
 
 We will be building this application with these technologies.
 
-- **`Web Server (Undertow)`** - We will be using [Undertow][3] as our web server. Spring Boot by default comes with [Apache Tomcat][17], but I personally have found Undertow to be a lot more performant. You can ofcourse still go with Tomcat or even Jetty, and the application should still work fine.
-- **`Spring MVC`** - We will use [Spring MVC][4] for our request handling and facilitating fetching data from db and passing it onto the UI for user to see.
-- **`Database (H2)`** - We will be using in-memory [database H2][5]. You can of course configure any other Relational Databases like MySQL or Postgres or MariaDB, and they would work just fine. I chose H2 just to keep things simple.
-- **`Java Persistence API`** - For a consistent access to the db, we will be using [Java Persistence API][6] as the abstraction layer.
+- **`Web Server (Undertow)`** - We will be using [Undertow][3] as our web server. Spring Boot by default comes with [Apache Tomcat][17], but I personally have found [Undertow][3] to be a lot more performant. You can ofcourse still go with Tomcat or even Jetty, and the application should still work fine.
+- **`Spring MVC`** - We will use [Spring MVC][4] for our request handling and facilitating fetching data from the database and passing it onto the UI for user to see.
+- **`Database (H2)`** - We will be using in-memory [database H2][5]. You can of course configure any other Relational Databases like MySQL or Postgres or MariaDB, and they would work just fine. I chose [H2][5] just to keep things simple.
+- **`Java Persistence API`** - For a consistent access to the database, we will be using [Java Persistence API][6] as the abstraction layer.
 - **`Hibernate`** - [Hibernate][7] will do the heavy lifting of taking the JPA metadata and making the actual calls to the database.
-- **`Thymeleaf`** - For our UI, we are going to use [Thymeleaf][8]. Of course you can use other View technologies like JSP, but Thymeleaf is simple and it allows to do things in parallel. The UI can be built separately without backend stuff being ready. The biggest advantage that I see is that Thymeleaf templates work without any server. You can open them in regular browser and the layout would just work fine.
-- **`Bootstrap`** - And to make our life easier with styling, we will use [Bootstrap][9]. You can build complicated layouts with Bootstap, but we are using it here to make our UI pretty.
+- **`Thymeleaf`** - For our UI, we are going to use [Thymeleaf][8]. You can use other View technologies like JSP, but [Thymeleaf][8] is simple and it allows to do things in parallel. The UI can be built separately without backend stuff being ready. The biggest advantage that I see is that [Thymeleaf][8] templates work without any server. You can open them in regular browser and the layout would just work fine.
+- **`Bootstrap`** - And to make our life easier with styling, we will use [Bootstrap][9]. You can build complicated layouts with [Bootstrap][9], but we are using it here to make our UI pretty.
 - **`Spring Security`** - To add security, we will be using the [Spring Security][10] module, and configure Login and Logout functionality from there.
 - **`Junit 5`** - Last but not the least, not to forget about testing, we will write our Unit test classes with [Junit Jupiter or Junit 5][11].
 - **`Spring Boot 2`** - And finally, all these technologies, will be stitched together with [Spring Boot 2][12] development workflow.
@@ -59,7 +67,7 @@ We will be building this application with these technologies.
 
 ## Model-View-Controller
 
-A quick refresher on [MVC or Model View Controller][13] design pattern. It is commonly used for developing user interfaces that divides the related program logic into three interconnected elements(Model, View and Controller). This is done to separate internal representations of information from the ways information is presented to and accepted from the user.
+A quick refresher on [MVC or Model View Controller][13] design pattern. It is commonly used for developing user interfaces that divides the related program logic into three interconnected elements - **Model**, **View** and **Controller**. This is done to separate internal representations of information from the ways information is presented to and accepted from the user.
 
 **`Model`** is the central component of the pattern. It is the application's dynamic data structure, independent of the user interface. It directly manages the data, logic and rules of the application.
 
@@ -97,15 +105,15 @@ Let’s look at how this application is structured with these technologies.
 </div>
 {{< /rawhtml >}}
 
-We have our client which will be a Browser here, and we have our undertow web server, which hosts our application. We have our H2 database that stores all the information. All interactions with the database are handled by Hibernate layer. These data interactions in Hibernate are requested by the JPA layer and Service layers in front it.
+We have our client which will be a **Browser** here, and we have our **Undertow** web server, which hosts our application. We have our **H2 database** that stores all the information. All interactions with the database are handled by **Hibernate** layer. These data interactions in Hibernate are requested by the **JPA layer** and **Service layer** in front it.
 
-The controller will handle the requests from the client and after fetching data with the help of the service layer, pass it onto the thymeleaf layer which renders the final response for client.
+The **Controller** will handle the requests from the **Client/Browser** and after fetching data with the help of the service layer, pass it onto the **Thymeleaf layer** which renders the final response for client.
 
-In front, facing the client, we have our Spring Security layer which secures and controls the request flow to the internal layers of the application.
+In front, facing the client, we have our **Spring Security layer** which secures and controls the request flow to the internal layers of the application.
 
 Here is how the request will flow within these layers.
 
-The client will initiate a request which will be validated by the spring security layer. After successful validation, it passes the request to the controller, which makes the call to service layer and fetches the data from the database. All the subsequent layers make appropriate requests to finally fetch the data from db and pass them back, all they way to the controller. Controller then selects the thymeleaf view as per the request and passes the model data. Thymeleaf response is rendered to generate the final web page with the model data passed to it and finally, the response is sent back to the client, through the Spring Security layer.
+The **Client/Browser** will initiate a request which will be validated by the **Spring Security layer**. After successful validation, it passes the request to the **Controller**, which makes the call to **Service layer** and fetches the data from the database. All the subsequent layers(**JPA** and **Hibernate**) make appropriate requests to finally fetch the data from **H2 database** and pass them back, all they way back to the **Controller**. **Controller** then selects the **Thymeleaf** view as per the request and passes the model data. **Thymeleaf** response is rendered to generate the final web page with the model data passed to it and finally, the response is sent back to the **Client/Browser**, through the **Spring Security layer**.
 
 Now, that we have a good idea on the application we are building, and how it is structured, let’s Build it with Spring Boot.
 
@@ -129,7 +137,7 @@ Here are things to chose.
 
 - **Project** - We will chose Maven project since that is what we will be using and I am more comfortable with Maven.
 - **Language** - We will chose `Java` here.
-- **Spring Boot** - We can keep the default selected value. At the time of writing, latest Spring Boot version is 2.5.0.
+- **Spring Boot** - We can keep the default selected value. At the time of writing, latest Spring Boot version is **2.5.0**.
 - **Project Metadata** - This is the section that we will provide for application co-ordinates
   - **Group** - `io.codejournal.springboot`
   - **Artifact** - `mvc-jpa-thymeleaf`
@@ -139,7 +147,15 @@ Here are things to chose.
   - **Packaging** - Default selection is `Jar`. Keep it as it is
   - **Java** - Default selection is `11` for Java 11. Keep it as it is.
 
-Once done, click on `GENERATE CTL + ⏎` to generate the Maven Project in a zip file and it will be downloaded. We didn't add any dependencies here since we will be adding them when we will need them in our projects. Extract the contents of the Project and import the Maven Project in your favourite IDE.
+Once done, click on `GENERATE CTL + ⏎` to generate the Maven Project in a zip file and it will be downloaded.
+
+{{< rawhtml >}}
+<div class="notification">
+    We didn't add any dependencies here since we will be adding them when we will need them in our project. That will give you more context as to why the dependencies were added and which part of code needs them.
+</div>
+{{< /rawhtml >}}
+
+Extract the contents of the Project and import the Maven Project in the IDE of your choice.
 
 
 
@@ -302,7 +318,7 @@ Let's add this dependency.
 </dependency>
 ```
 
-And now, if you run the application(`mvn spring-boot:run`), you will see that now the application runs, and since it starts the Undertow server, the application doesn't shut down right away. You will need to press `Ctl + C` to signal stop to the application which stops the server, and application terminates.
+And now, if you run the application(`mvn spring-boot:run`), you will see that now the application runs, and since it starts the [`Undertow`][3] server, the application doesn't shut down right away. You will need to press `Ctl + C` to signal stop to the application which stops the server, and application terminates.
 
 {{< rawhtml >}}
 <pre class="code-output">
@@ -347,11 +363,14 @@ And now, if you run the application(`mvn spring-boot:run`), you will see that no
 </pre>
 {{< /rawhtml >}}
 
-So, our Web Server is set and our application is running.
+So, our Web Server is set and our application is running. And that concludes our [Part 1][19] of this series.
 
-And that is all for the Part 1.
+In [Part 2][20], we will setup the database and configure access to database via Java Persistence API(JPA).
 
-In Part 2, we will setup the database and configure access to database via JPA.
+Here is the [Github project for Part 1][18] for your reference.
+
+
+
 
 
 
@@ -372,3 +391,9 @@ In Part 2, we will setup the database and configure access to database via JPA.
  [15]: #creating-the-scratch-project
  [16]: https://github.com/spring-projects/spring-boot/blob/main/spring-boot-project/spring-boot-starters/spring-boot-starter-web/build.gradle
  [17]: https://tomcat.apache.org/
+ [18]: https://github.com/the-code-journal/build-it-with-spring-boot/tree/main/01-mvc-jpa-thymeleaf/part01
+ [19]: /2021/05/build-it-with-spring-boot-crud-operations-part-1/
+ [20]: /2021/06/build-it-with-spring-boot-crud-operations-part-2/
+ [21]: /2021/06/build-it-with-spring-boot-crud-operations-part-3/
+ [22]: /2021/06/build-it-with-spring-boot-crud-operations-part-4/
+ [23]: /2021/06/build-it-with-spring-boot-crud-operations-part-5/
