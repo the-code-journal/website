@@ -1,7 +1,7 @@
 ---
 date: 2021-06-02
 linktitle: Build it with Spring Boot - CRUD Operations - Part 2
-next: /2020/08/install-apache-maven-on-linux/
+next: /2021/06/build-it-with-spring-boot-crud-operations-part-3/
 prev: /2021/05/build-it-with-spring-boot-crud-operations-part-1/
 title: Build it with Spring Boot - CRUD Operations - Part 2
 weight: 10
@@ -470,23 +470,9 @@ assertThat(fellowshipOfTheRing).hasSize(9)
 
 We will use [Mockito][24] as our mocking framework to mock out our dependencies. Its simple, straight-forward and easy to get up and running.
 
-Let's add the corresponding dependencies in our `pom.xml`
+Both [AssertJ][23] and [Mockito][24] are available in our project already and they come with `spring-boot-starter-test` dependency. Apart from [Junit 5][21], we will also use these two in our tests.
 
-```xml
-<dependency>
-    <groupId>org.assertj</groupId>
-    <artifactId>assertj-core</artifactId>
-    <scope>test</scope>
-</dependency>
-<dependency>
-    <groupId>org.mockito</groupId>
-    <artifactId>mockito-all</artifactId>
-    <version>1.10.19</version>
-    <scope>test</scope>
-</dependency>
-```
 
-Yet again, we didn't have to specify `<version>` for `assertj-core` since the version is managed from `spring-boot-starter-parent`. However, `mockiito-all` is not managed, and hence we need to specify the `<version>`.
 
 
 
