@@ -1,8 +1,8 @@
 ---
-date: 2021-06-13
+date: 2021-05-30
 linktitle: Unit Testing in Maven - JUnit HTML Report
-next: /2020/08/install-apache-maven-on-linux/
-prev: /2021/06/build-it-with-spring-boot-crud-operations-part-2/
+next: /2021/06/build-it-with-spring-boot-crud-operations-part-1/
+prev: /2021/05/curious-case-of-modulo-operator/
 title: Unit Testing in Maven - JUnit HTML Report
 weight: 10
 tags: [ "maven", "devops", "tools"]
@@ -427,7 +427,7 @@ Below is a screenshot for reference.
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/2021/06/maven-unit-tests-junit-html-report.png" alt="Unit Testing with Maven - JUnit HTML Report" />
+    <img src="/images/2021/05/maven-unit-tests-junit-html-report.png" alt="Unit Testing with Maven - JUnit HTML Report" />
 </div>
 {{< /rawhtml >}}
 
