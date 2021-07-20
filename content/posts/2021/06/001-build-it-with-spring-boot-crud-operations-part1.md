@@ -1,8 +1,8 @@
 ---
-date: 2021-05-30
+date: 2021-06-01
 linktitle: Build it with Spring Boot - CRUD Operations - Part 1
-next: /2021/05/build-it-with-spring-boot-crud-operations-part-2/
-prev: /2021/05/curious-case-of-modulo-operator/
+next: /2021/06/build-it-with-spring-boot-crud-operations-part-2/
+prev: /2021/06/unit-testing-in-maven-junit-html-report/
 title: Build it with Spring Boot - CRUD Operations - Part 1
 weight: 10
 tags: [ "spring-boot", "java", "crud", "applications" ]
@@ -16,7 +16,7 @@ The project we are building here is a Spring Boot Web application that demonstra
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/2021/05/build-it-with-spring-boot-crud.gif" alt="Build it with Spring Boot - CRUD Operation Application" />
+    <img src="/images/2021/06/build-it-with-spring-boot-crud.gif" alt="Build it with Spring Boot - CRUD Operation Application" />
 </div>
 {{< /rawhtml >}}
 
@@ -79,7 +79,7 @@ A typical request flow in MVC pattern looks like this.
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/2021/05/model-view-controller-normal.png" alt="Model View Controller (Normal)" />
+    <img src="/images/2021/06/model-view-controller-normal.png" alt="Model View Controller (Normal)" />
 </div>
 {{< /rawhtml >}}
 
@@ -87,7 +87,7 @@ User issues a request to see a view. This request is received by the controller,
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/2021/05/model-view-controller-redirect.png" alt="Model View Controller (Redirect)" />
+    <img src="/images/2021/06/model-view-controller-redirect.png" alt="Model View Controller (Redirect)" />
 </div>
 {{< /rawhtml >}}
 
@@ -101,7 +101,7 @@ Let’s look at how this application is structured with these technologies.
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/2021/05/spring-boot-crud-operation-application-structure.png" alt="Spring Boot CRUD Operation Application Structure" />
+    <img src="/images/2021/06/spring-boot-crud-operation-application-structure.png" alt="Spring Boot CRUD Operation Application Structure" />
 </div>
 {{< /rawhtml >}}
 
@@ -129,7 +129,7 @@ Let's head over to [Spring Initializer][14] to create the scratch project for th
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/2021/05/spring-starter.png" alt="Spring Starter" />
+    <img src="/images/2021/06/spring-starter.png" alt="Spring Starter" />
 </div>
 {{< /rawhtml >}}
 
@@ -392,7 +392,7 @@ Here is the [Github project for Part 1][18] for your reference.
  [16]: https://github.com/spring-projects/spring-boot/blob/main/spring-boot-project/spring-boot-starters/spring-boot-starter-web/build.gradle
  [17]: https://tomcat.apache.org/
  [18]: https://github.com/the-code-journal/build-it-with-spring-boot/tree/main/01-mvc-jpa-thymeleaf/part01
- [19]: /2021/05/build-it-with-spring-boot-crud-operations-part-1/
+ [19]: /2021/06/build-it-with-spring-boot-crud-operations-part-1/
  [20]: /2021/06/build-it-with-spring-boot-crud-operations-part-2/
  [21]: /2021/06/build-it-with-spring-boot-crud-operations-part-3/
  [22]: /2021/06/build-it-with-spring-boot-crud-operations-part-4/

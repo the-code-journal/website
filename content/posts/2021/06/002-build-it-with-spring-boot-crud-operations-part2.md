@@ -2,7 +2,7 @@
 date: 2021-06-02
 linktitle: Build it with Spring Boot - CRUD Operations - Part 2
 next: /2021/06/build-it-with-spring-boot-crud-operations-part-3/
-prev: /2021/05/build-it-with-spring-boot-crud-operations-part-1/
+prev: /2021/06/build-it-with-spring-boot-crud-operations-part-1/
 title: Build it with Spring Boot - CRUD Operations - Part 2
 weight: 10
 tags: [ "spring-boot", "java", "crud", "applications" ]
@@ -16,7 +16,7 @@ The project we are building here is a Spring Boot Web application that demonstra
 
 {{< rawhtml >}}
 <div class="image">
-    <img src="/images/2021/05/build-it-with-spring-boot-crud.gif" alt="Build it with Spring Boot - CRUD Operation Application" />
+    <img src="/images/2021/06/build-it-with-spring-boot-crud.gif" alt="Build it with Spring Boot - CRUD Operation Application" />
 </div>
 {{< /rawhtml >}}
 
@@ -1035,7 +1035,7 @@ Here is the [Github project for Part 2][32] for your reference.
 
   [1]: https://spring.io/projects/spring-boot
   [2]: https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
-  [3]: /2021/05/build-it-with-spring-boot-crud-operations-part-1/
+  [3]: /2021/06/build-it-with-spring-boot-crud-operations-part-1/
   [4]: https://en.wikipedia.org/wiki/Class_diagram
   [5]: https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model
   [6]: https://en.wikipedia.org/wiki/Use_case
