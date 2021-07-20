@@ -2,7 +2,7 @@
 date: 2020-12-29
 linktitle: Generating Code using Maven - XSD to Java
 next: /2021/01/generating-code-using-maven-java-to-json-schema/
-prev: /2020/11/generating-code-using-maven-java-to-xsd/
+prev: /2020/12/generating-code-using-maven-java-to-xsd/
 title: Generating Code using Maven - XSD to Java
 weight: 10
 tags: [ "maven", "devops", "tools"]
@@ -417,8 +417,8 @@ The [working code][7] is available on github for reference.
  [1]: https://github.com/the-code-journal/maven-for-beginners/tree/main/004-generate-code-xsd-to-java/initial
  [2]: https://github.com/mojohaus/jaxb2-maven-plugin
  [3]: https://docs.oracle.com/javase/9/docs/api/deprecated-list.html
- [4]: https://www.oracle.com/java/technologies/javase/jdk-11-relnote.html#JDK-8190378
+ [4]: https://bugs.java.com/bugdatabase/view_bug.do?bug_id=JDK-8190378
  [5]: https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
  [6]: https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl
  [7]: https://github.com/the-code-journal/maven-for-beginners/tree/main/004-generate-code-xsd-to-java/final
- [8]: /2020/11/generating-code-using-maven-java-to-xsd/
+ [8]: /2020/12/generating-code-using-maven-java-to-xsd/
