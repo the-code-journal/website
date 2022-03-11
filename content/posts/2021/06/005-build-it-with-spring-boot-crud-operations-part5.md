@@ -34,7 +34,7 @@ Here are all the articles of this series.
 
 ## Article coming soon
 
-Here is the video for the time being
+Here is the video for the time being.
 
 {{< yt "https://www.youtube.com/embed/f7YKl6ATHQ8" >}}
 
