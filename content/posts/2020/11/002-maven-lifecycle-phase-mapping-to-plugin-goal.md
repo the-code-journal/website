@@ -300,7 +300,7 @@ The [working code][10] is available on github for reference.
 
 
  [1]: https://github.com/the-code-journal/maven-for-beginners/tree/main/002-custom-lifecycle-mappings/initial
- [2]: https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.tml#lifecycle-reference
+ [2]: https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#lifecycle-reference
  [3]: https://maven.apache.org/plugins/maven-clean-plugin/
  [4]: https://ant.apache.org/manual/tasksoverview.html
  [5]: https://ant.apache.org/manual/Tasks/echo.html
