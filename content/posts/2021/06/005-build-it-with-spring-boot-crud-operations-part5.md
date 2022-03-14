@@ -1,7 +1,7 @@
 ---
 date: 2021-06-28
 linktitle: Build it with Spring Boot - CRUD Operations - Part 5
-next: /2020/08/install-apache-maven-on-linux/
+next: /2020/08/unit-testing-in-maven-surefire-configurations/
 prev: /2021/06/build-it-with-spring-boot-crud-operations-part-4/
 title: Build it with Spring Boot - CRUD Operations - Part 5
 weight: 10
