@@ -45,4 +45,4 @@ Here is the video for the time being
   [4]: /2021/06/build-it-with-spring-boot-crud-operations-part-2/
   [5]: /2021/06/build-it-with-spring-boot-crud-operations-part-3/
   [6]: /2021/06/build-it-with-spring-boot-crud-operations-part-4/
-  [7]: /2021/06/build-it-with-spring-boot-crud-operations-part-3/
+  [7]: /2021/06/build-it-with-spring-boot-crud-operations-part-5/
