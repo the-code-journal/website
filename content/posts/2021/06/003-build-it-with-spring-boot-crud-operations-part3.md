@@ -860,7 +860,7 @@ Here is the [Github project for Part 3][32] for your reference.
   [4]: /2021/06/build-it-with-spring-boot-crud-operations-part-2/
   [5]: /2021/06/build-it-with-spring-boot-crud-operations-part-3/
   [6]: /2021/06/build-it-with-spring-boot-crud-operations-part-4/
-  [7]: /2021/06/build-it-with-spring-boot-crud-operations-part-3/
+  [7]: /2021/06/build-it-with-spring-boot-crud-operations-part-5/
   [8]: https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
   [9]: https://www.oracle.com/java/technologies/persistence-jsp.html
  [10]: https://hibernate.org/orm/
