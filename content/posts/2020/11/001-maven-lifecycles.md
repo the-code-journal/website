@@ -223,10 +223,11 @@ The integration test phases allow you to manage and run integration tests. There
 - `pre-integration-test`
 - `integration-test`
 - `post-integration-test`
+- `verify`
 
-`pre-integration-test` is intended for setting up the required environment for integration tests, and then the actual integration tests are run in the `integration-test` phase.
+`pre-integration-test` is intended for setting up the required environment for integration tests, and then the actual integration tests are run in the `integration-test` phase. Once the integration tests are executed, you can clean up the environment or generate integration test report in the `post-integration-test` phase.
 
-Once the integration tests are executed, you can clean up the environment or generate integration test report in the `post-integration-test` phase.
+And finally, `verify` checks the result of integration tests.
 
 
 
@@ -234,11 +235,8 @@ Once the integration tests are executed, you can clean up the environment or gen
 
 The last set of phases of default lifecycle relates to releasing of your application artifacts. Here are these
 
-- `verify`
 - `install`
 - `deploy`
-
-The first phase is `verify` that allows you to run checks to verify the packaged artifact and that it meets quality criterias.
 
 The next phase is `install` which copies the artifact to the local maven repository in your system.
 
