@@ -1,7 +1,7 @@
 ---
 date: 2022-03-14
 linktitle: Unit Testing in Maven - Surefire Configurations
-next: /2020/08/install-apache-maven-on-linux/
+next: /2022/03/integration-testing-in-maven-failsafe-configurations/
 prev: /2021/06/build-it-with-spring-boot-crud-operations-part-5/
 title: Unit Testing in Maven - Surefire Configurations
 weight: 10
@@ -165,7 +165,7 @@ Thus to be able to run tests in parallel is very crucial and surefire provides e
 <div class="notification">A quick side note here that unless your test executions take over 5 minutes or more, the benefits of parallel tests aren’t quite evident.</div>
 {{< /rawhtml >}}
 
-The core configuration for Paralle Tests are `parallel` property and `threadCount` property.
+The core configuration for Parallel Tests are `parallel` property and `threadCount` property.
 - `parallel` - Defines which component should be parallelized. Values can be `methods, classes, both, suites, suitesAndClasses, suitesAndMethods, classesAndMethods, all`
 - threadCount - Defines how many threads should be used to run the components in parallel
 
