@@ -1,5 +1,5 @@
 ---
-date: 2022-03-14
+date: 2022-03-27
 linktitle: Code Coverage with Maven Jacoco Plugin
 next: /2020/08/install-apache-maven-on-linux/
 prev: /2022/03/integration-testing-in-maven-failsafe-configurations/
@@ -10,7 +10,11 @@ categories: [ "DevOps", "Maven", "Tools" ]
 ---
 
 
-While [Unit Tests][1] provide a huge confidence in the code that you write, the importance of having [Integration Tests][2] is still unquestionable. [Integration tests][2] allow you to test the components when they interact with each other. [Maven Failsafe plugin][3] is designed to run integration tests. In our video today, we will see how to run this plugin and see some common configurations that you might use in your projects.
+Code coverage is a metric that can help you understand how much of your source is tested. It's a very useful metric that can help you assess the quality of your test suite. A program with high test coverage has more of its source code executed during testing, which suggests it has a lower chance of containing undetected software bugs compared to a program with low test coverage. So, it really depends on how well your tests are written.
+
+Now, there are multiple tools available to help you measure the code coverage for your Java code like Open Clover, Cobertura, JCov. However, in this article, we will be taking a look at the most popular tool in this list - JaCoCo.
+
+Here is video for the same.
 
 {{< yt "https://www.youtube.com/embed/wEr_SXkWZ24" >}}
 
@@ -18,239 +22,458 @@ While [Unit Tests][1] provide a huge confidence in the code that you write, the 
 
 
 
-## Failsafe Plugin
+## JaCoCo
 
-[Maven Failsafe plugin][3] provides 2 goals.
+JaCoCo is short form for **Ja**va **Co**de **Co**verage. It provides two modes of instrumentation of the code
 
-- `integration-test` - Run integration tests
-- `verify` - Verify that the integration tests are passing
+- Java Agent - Instrumenting the bytecode on the fly while running the code with a Java Agent
+- Offline - Coverage in offline mode(i.e. Prior to execution of code). This mode of code coverage isn’t quite popular and is typically used in special cases.
 
-To add [Maven Failsafe plugin][3] to your project, simple add the following in your `pom.xml`.
+The most popular usage of JaCoCo is performing the instrumentation using the Maven JaCoCo plugin. Let's see how we can configure this for a simple Java project.
+
+
+
+
+
+## JaCoCo Maven Plugin
+
+Here is a project that we will use to configure the Maven JaCoCo plugin and generate coverage report.
+
+```
+.
+├── pom.xml
+└── src
+    ├── main
+    │   └── java
+    │       └── io/codejournal/maven/jacocodemo/numbers
+    │                                           └── LastDigit.java
+    └── test
+        └── java
+            └── io/codejournal/maven/jacocodemo/numbers
+                                                └── LastDigitTest.java
+```
+
+Here is the code for `LastDigit.java`. This is the solution to CodingBat problem [(Warmup-1 -> lastDigit)](https://codingbat.com/prob/p125339). 
+
+```java
+package io.codejournal.maven.jacocodemo.numbers;
+
+public class LastDigit {
+
+    public final boolean lastDigit(final int a, final int b) {
+
+        final int lastDigitA = a % 10;
+        final int lastDigitB = b % 10;
+
+        return (lastDigitA == lastDigitB);
+    }
+}
+```
+
+And here is the code for `LastDigitTest.java`.
+
+```java
+package io.codejournal.maven.jacocodemo.numbers;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+public class LastDigitTest {
+
+    private LastDigit fixture;
+
+    @BeforeEach
+    public void setUp() {
+        fixture = new LastDigit();
+    }
+
+    @Test
+    public void shouldReturnTrueWhenLastDigitsAreSame() {
+
+        final int num1 = 17;
+        final int num2 = 7;
+
+        final boolean expected = true;
+
+        final boolean actual = fixture.lastDigit(num1, num2);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    public void shouldReturnFalseWhenLastDigitsAreNotSame() {
+
+        final int num1 = 17;
+        final int num2 = 13;
+
+        final boolean expected = false;
+
+        final boolean actual = fixture.lastDigit(num1, num2);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+}
+```
+
+And finally, the `pom.xml`. It has project co-ordinates, maven compiler properties, dependencies for JUnit and AssertJ, and then we have Maven Surefire Plugin, which will run our tests.
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>io.codejournal.maven</groupId>
+    <artifactId>maven-jacoco-plugin-demo</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.19.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+Let's configure Maven JaCoCo plugin now. Simply add the plugin co-ordinates.
 
 ```xml
 <plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-failsafe-plugin</artifactId>
-  <version>3.0.0-M5</version> <!-- Use the latest version if possible -->
-  <executions>
-    <execution>
-      <goals>
-        <goal>integration-test</goal>
-        <goal>verify</goal>
-      </goals>
-    </execution>
-  </executions>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.8.7</version>
 </plugin>
 ```
 
-And then to run the integration tests, simply run the `verify` phase of the build lifecycle.
+Now, we need to define how the instrumentation happens for our project. To do that, we need to prepare the Java Agent to instrument the code when the application runs. This is done using the `prepare-agent` goal(`prepare-agent-integration` in case of integration tests). When the tests/application is run, the coverage data is recorded and written to a file, which then later can be used to either check rules(`check` goal) or simply generate a report(`report` goal) for manual analysis and reporting.
 
+For now, let's just generate the report, so we will need to run the `prepare-agent` goal and then `report` goal. Here is how we will configure the plugin eventually.
+
+```xml
+<plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.8.7</version>
+    <executions>
+        <execution>
+            <id>jacoco-prepare-agent</id>
+            <goals>
+                <goal>prepare-agent</goal>
+            </goals>
+        </execution>
+        <execution>
+            <id>jacoco-report</id>
+            <goals>
+                <goal>report</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
 ```
-mvn clean verify
-```
+
+Let's run the build with `mvn clean verify` to generate our report. Now, the output for the maven build isn't complicated. There are two things that will be worth noting in the build output.
+
+First one is the setting of the `argLine` property. It sets the `-javaagent` path so that instrumentation can be done for the code. Here is the section from the build output.
+
+{{< rawhtml >}}
+<pre class="code-output">
+...
+[INFO] --- jacoco-maven-plugin:0.8.7:prepare-agent (jacoco-prepare-agent) @ maven-jacoco-plugin-demo ---
+[INFO] argLine set to -javaagent:/home/codejournal/.m2/repository/org/jacoco/org.jacoco.agent/0.8.7/org.jacoco.agent-0.8.7-runtime.jar=destfile=/home/
+codejournal/workspace/maven-jacoco-plugin-demo/target/jacoco.exec
+...
+</pre>
+{{< /rawhtml >}}
+
+And the second part is the generation of the code coverage report. This is done at the end after the tests are executed.
+
+{{< rawhtml >}}
+<pre class="code-output">
+...
+[INFO] --- jacoco-maven-plugin:0.8.7:report (jacoco-report) @ maven-jacoco-plugin-demo ---
+[INFO] Loading execution data file /home/codejournal/workspace/maven-jacoco-plugin-demo/target/jacoco.exec
+[INFO] Analyzed bundle 'maven-jacoco-plugin-demo' with 1 classes
+...
+</pre>
+{{< /rawhtml >}}
+
+Now, if you go to your `target/site/jacoco` directory, you will find the reports.
+
+{{< rawhtml >}}
+<pre class="code-output">
+-> tree target/site/jacoco/
+target/site/jacoco/
+├── index.html                &lt;!-- Project Report in HTML -->
+├── jacoco.csv                &lt;!-- Project Report in CSV -->
+├── jacoco.xml                &lt;!-- Project Report in XML -->
+├── jacoco-sessions.html
+├── jacoco-resources
+|
+└── io.codejournal.maven.jacocodemo.numbers   &lt;!-- Package specific Report -->
+    ├── index.html
+    ├── index.source.html
+    ├── LastDigit.html
+    └── LastDigit.java.html
+</pre>
+{{< /rawhtml >}}
+
+Here is the screenshot for the report.
+
+{{< rawhtml >}}
+<div class="image">
+    <img src="/images/2022/03/maven-jacoco-report.png" alt="Maven JaCoco Plugin Report" />
+</div>
+{{< /rawhtml >}}
+
+The above is a very simplistic use case. JaCoCo provides more goals that you can use for more complicated use cases and these are discussed below.
 
 
 
 
 
-{{< articlead >}}
+## JaCoCo Maven Plugin - Goals
 
-## Skipping Tests
+- `prepare-agent` - Prepares a property pointing to the JaCoCo runtime agent that can be passed as a VM argument to the application under test.
+- `prepare-agent-integration` - Same as `prepare-agent`, but provides default values suitable for integration-tests
+- `check` - Checks that the code coverage metrics are being met.
+- `report` - Creates a code coverage report for tests of a single project
+- `report-integration` - Same as `report`, but provides default values suitable for integration-tests
+- `merge` - Mojo for merging a set of execution data files (*.exec) into a single file
+- `report-aggregate` - Creates a structured code coverage report from multiple projects
+- `dump` - Request a dump over TCP/IP from a JaCoCo agent running in `tcpserver` mode.
+- `instrument` - Performs offline instrumentation
+- `restore-instrumented-classes` - Restores original classes as they were before offline instrumentation
 
-Every now and then, you might want to skip running the integration tests. This can be because you already ran the tests in a previous step and running the tests again would be redundant, or you may be working post testing phases(like packaging of your artifacts or like building a Docker image or deploying to a Repository) and running the tests everytime takes up time. In such cases, you can simply skip the tests and make your builds faster.
+Let's talk about these goals in details.
 
-### Skipping Tests in pom.xml
+## JaCoCo Goal - prepare-agent
 
-To skip running tests for a Maven project, simply set the `skipITs` property to `true`.
+This goal prepares a property pointing to the JaCoCo runtime agent that can be passed as a VM argument to the application under test. The default property name is `argLine`. This goal binds to `initialize` phase of the default lifecycle.
+
+If your project doesn't pass any arguments to your tests/application, then you don't need to configure anything. However, if your application does pass some arguments, you will need to configure this.
+
+For instance, if you define `argLine` property of Maven Surefire Plugin, then you need to configure as below.
 
 ```xml
 <plugin>
   <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-failsafe-plugin</artifactId>
-  <version>3.0.0-M5</version>
+  <artifactId>maven-surefire-plugin</artifactId>
   <configuration>
-    <skipITs>true</skipITs>
+    <argLine>@{argLine} -your -extra -arguments</argLine>
   </configuration>
 </plugin>
 ```
 
-### Skipping Tests from Command Line via `skipITs`
+In most cases, you won't needing any additional configuration, however, there are additional configurations available that you can use if your need them. Check the [documentation here]() to find all of them.
 
-While `<skipITs>true</skipITs>` is convinient, changing `pom.xml` everytime to enable/disable tests is cumbersome. To help you with that, Maven allows to skip integration tests via the `skipITs` argument.
 
-```bash
-$ mvn install -DskipITs
+
+
+
+## JaCoCo Goal - prepare-agent-integration
+
+Same as `prepare-agent`, but provides default values suitable for integration-tests. It also generated the data to a different output file(`${project.build.directory}/jacoco-it.exec`) and it binds to `pre-integration-test` phase of default lifecycle. The [configuration options]() too are very similar to that of `prepare-agent` goal.
+
+
+
+
+
+## JaCoCo Goal - report
+
+`report` goal creates a code coverage report for tests of a single project in multiple formats (HTML, XML, and CSV). It binds to `verify` phase of the default lifecycle. Since, this goal is most widely used, let's discuss its configuration parameters.
+
+- `<skip>` - Flag used to enable/disable report generation
+- `<formats>` - Report format to generate. Supported reports are - HTML, CSV and XML. By default, all reports are generated. Here is an example which only generates XML report
+```xml
+<execution>
+    <id>jacoco-report</id>
+    <goals>
+        <goal>report</goal>
+    </goals>
+    <configuration>
+        <formats>
+            <format>XML</format>
+        </formats>
+    </configuration>
+</execution>
 ```
-
-{{< rawhtml >}}
-<div class="notification"><code>skipITs</code> however, does not skip the compilation of test classes. Use <code>maven.test.skip</code> instead. This will also disable the unit tests run by Surefire plugin.</div>
-{{< /rawhtml >}}
-
-
-### Skipping Tests from Command Line via maven.test.skip
-
-`skipITs` argument above only skips the test execution. You can also save build time by skipping the compilation of Test classes by using the property - `maven.test.skip`. This is honored by Surefire, Failsafe and the Compiler plugin.
-
-```bash
-$ mvn install -Dmaven.test.skip=true
-```
-
-Check the [official documentation][4] for more.
-
-
-
-
-
-{{< articlead >}}
-
-## Including/Excluding Tests
-
-Sometimes, you want to include/exclude only certain tests. For example, there is a Test class which is deprecated and you don’t want to run its test anymore. Another example could be that you are working on a specific component(Service class) and want to run integration tests only for that specific component so that you are sure that your changes aren’t breaking it. And once your changes are complete, you can include integration tests for other components as well.
-
-You can configure test class inclusions and/or exclusions using the `<includes>` and `<excludes>` sections of the Failsafe configuration. Here is an example below.
-
+- `<dataFile>` - Data file with execution data for which report is generated. Default file that JaCoCo looks is `${project.build.directory}/jacoco.exec`
+- `<title>` - Name of the root node in HTML report pages. The default value is `${project.name}`
+- `<footer>` - Footer text used in the HTML report pages.
+- `<includes>/<excludes>` - A list of class files to include/exclude in the report. You may use wildcard characters (* and ?) as part of the configuration. Below is an example in which, all classes which has `jacocodemo` in it is package are included except if they have `jacocodemo/strings` in them.
 ```xml
 <configuration>
-  <includes>
-    <include>**/codingbat/array1/*TestIT</include>
-  </includes>
-  <excludes>
-    <exclude>**/codingbat/array1/M*TestIT</exclude>
-  </excludes>
+    <includes>
+        <include>**/jacocodemo/**/*</include>
+    </includes>
+    <excludes>
+        <exclude>**/jacocodemo/strings/*</exclude>
+    </excludes>
 </configuration>
 ```
 
-With above configuration, all Test classes ending with `TestIT` that are inside package structure matching `**/codingbat/array1` will be included in the test execution as part of `includes` configuration, and then all classes that `start with M` within the same package and ending with `TestIT`, will be excluded as part of `excludes` configuration.
 
-### Includes/Excludes using Regular Expressions
 
-You can also use [regular expressions][8] as part of your `<include>/<exclude>` configurations. The regular expression pattern is specified with `%regex[__PATTERN__]%`. For example,
 
-```xml
-<include>%regex[.*(Circle|Square).*TestIT.*]</include>
-```
 
-Check the [official documentation][5] for more.
+## JaCoCo Goal - report-integration
+
+Same as `report`, but provides default values suitable for integration-tests. It looks for different output file in the project(`${project.build.directory}/jacoco-it.exec`) and it binds to `verify` phase of default lifecycle. The [configuration options]() too are very similar to that of `report` goal.
 
 
 
 
 
-{{< articlead >}}
+## JaCoCo Goal - merge
 
-## Single Test
+If you generate multiple JaCoCo coverage files with your build, and want to combine them together, you can use the `merge` goal. You can configure the file path locations using `<fileSet>` and JaCoCo will merge all the instrumentation output files that it locates. Here is the [documentation for this goal](https://www.jacoco.org/jacoco/trunk/doc/merge-mojo.html).
 
-Including/excluding configuration of [Failsafe Plugin][3] becomes part of your `pom.xml`. So, if you accidentally committed those changes, your CI/CD pipelines would run only those integration tests and that is not something you would be wanting.
 
-[Failsafe plugin][3] understands this and provides support to run just a single test class or method, without making any changes to `pom.xml`. This helps you to safely run the tests on which you are working on, without the need of running the whole test suite every time. You can provide the test configuration as part of `test` property in your maven command, and only those integration tests will be executed.
 
-### Running Single Test class, All methods
 
-For example, your Test class is named as `CircleTestIT`, you can run all the tests with below command
 
-```bash
-$ mvn verify -Dit.test=CircleTestIT
-```
+## JaCoCo Goal - report-aggregate
 
-### Running Single Test class, Single method
+This goal is generally used with multi-module Maven projects. The report is created from all modules this project depends on. From those projects class and source files as well as JaCoCo execution data files will be collected. In addition execution data is collected from the project itself. This also allows to create coverage reports when tests are in separate projects than the code under test, for example in case of integration tests.
 
-If you only want to run a single test method from test class(`CircleTestIT`), you can use the `#` to specify the test method to run.
-
-```bash
-$ mvn verify -Dit.test=CircleTestIT#test1
-```
-
-### Running Single Test class, Multiple methods
-
-You can also specify multiple methods to execute. Below will execute both, `test1` and `test2` methods from `CircleTestIT`.
-
-```bash
-$ mvn verify -Dit.test=CircleTestIT#test1+test2
-```
-
-### Running Single Test class, Multiple methods with patterns
-
-You can also use patterns to select the methods for executions. Below will execute all methods `starting with test` in `CircleTestIT` along with 
-
-```bash
-$ mvn verify -Dit.test=CircleTestIT#test* # All methods starting with test
-$ mvn verify -Dit.test=CircleTestIT#test*+anothertest # All methods starting with test and method - anothertest
-$ mvn verify -Dit.test=CircleTestIT#test?? # All methods starting with test and just two additional letters
-```
-
-### Going crazy
-
-`it.test` property can take multiple class/method configurations and you can really go crazy with them. For example,
-
-```bash
-mvn verify '-Dit.test=???Test, *Test#test*One+testTwo???, %regex[#fast.*|slow.*], !Unstable*'
-```
+To generate a report for a multi-module Maven project, here is how it needs to be setup.
 
 {{< rawhtml >}}
-<div class="notification"><code>!</code> is used to mark anything for exclusion in the example above.</div>
+<pre class="code-output">
+maven-jacoco-multi-module-demo/
+├── maven-jacoco-multi-module-demo-numbers
+├── maven-jacoco-multi-module-demo-strings
+├── maven-jacoco-multi-module-demo-reports
+└── pom.xml
+</pre>
 {{< /rawhtml >}}
 
-Check the [official documentation][6] for more.
-
-
-
-
-
-{{< articlead >}}
-
-## Parallel Tests
-
-As your tests grow in size, your build time will increase and more often than not, it will be the test execution that will be contributing to the overall build time.
-
-Thus to be able to run tests in parallel is very crucial and failsafe provides extensive support for these.
-
-{{< rawhtml >}}
-<div class="notification">A quick side note here that unless your test executions take over 5 minutes or more, the benefits of parallel tests aren’t quite evident.</div>
-{{< /rawhtml >}}
-
-The core configuration for Parallel Tests are `parallel` property and `threadCount` property.
-- `parallel` - Defines which component should be parallelized. Values can be `methods, classes, both, suites, suitesAndClasses, suitesAndMethods, classesAndMethods, all`
-- threadCount - Defines how many threads should be used to run the components in parallel
-
-To achieve the best performance for your tests, there are [some additional properties][7] to get the most out of your builds.
-
-
-
-
-
-## Forked Tests
-
-By default all tests are run in the same JVM as the build is running. However, to make use of even more parallelism and if your hardware can support, you can create additional JVMs that just run your tests. If your tests take a very long time and you want to cut down on the test execution time, forking should definitely help you.
-
-Again, the core configurations around forked tests are below:
-- `forkCount` - Maximum JVMs to spawn to execute tests. If you terminate the value with a `C`, that value will be multiplied with the number of available CPU cores in your system. For example `forkCount=2.5C` on a Quad-Core system will result in forking up to `10 concurrent JVM processes` that execute tests.
-- `reuseForks` - Whether to reuse the forked JVM to execute the next tests. If set to `false`, the fork will be terminated and the new fork will be created for next test
-- `argLine` - Can be used to specify additional parameters passed to the JVM process(such as memory settings)
-- `systemPropertyVariables` - System properties passed to the JVM process
-
-You can use `${surefire.forkNumber}` placeholder within the configuration to reference the runtime fork number of the JVM process.
-
-The following is an example configuration that makes use of up to three forked processes that execute the tests and then terminate. A system property `databaseSchema` is passed to the processes, that shall specify the database schema to use during the tests. The values for that will be `MY_TEST_SCHEMA_1, MY_TEST_SCHEMA_2`, and `MY_TEST_SCHEMA_3` for the three JVM processes. Additionaly by specifying custom `workingDirectory` each of processes will be executed in a separate working directory to ensure isolation on file system level. And finally, to be able to identify which tests ran in which fork, we specify the `reportsDirectory` so that each fork can write the test result in their own separate directory.
+The parent `pom.xml` just sets up the `prepare-agent` so that every module can instrument their own module code.
 
 ```xml
 <plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-failsafe-plugin</artifactId>
-  <version>3.0.0-M5</version>
-  <configuration>
-      <forkCount>3</forkCount>
-      <reuseForks>true</reuseForks>
-      <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
-      <systemPropertyVariables>
-          <databaseSchema>MY_TEST_SCHEMA_${surefire.forkNumber}</databaseSchema>
-      </systemPropertyVariables>
-      <workingDirectory>FORK_DIRECTORY_${surefire.forkNumber}</workingDirectory>
-      <reportsDirectory>target/failsafe-reports-${surefire.forkNumber}</reportsDirectory>
-  </configuration>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.8.7</version>
+    <executions>
+        <execution>
+            <id>jacoco-prepare-agent</id>
+            <goals>
+                <goal>prepare-agent</goal>
+            </goals>
+        </execution>
+    </executions>
 </plugin>
 ```
 
-Check the [official documentation][8] for more.
+To generate the report, we created an additional module `maven-jacoco-multi-module-demo-reports` and all our rest of the modules will be included as dependency here. This is done to ensure that all other modules will have their code instrumented first and the data files will be available to generate the report. Here is the `pom.xml` for module - `maven-jacoco-multi-module-demo-reports`.
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>io.codejournal.jacocodemo</groupId>
+        <artifactId>maven-jacoco-multi-module-demo-numbers</artifactId>
+        <version>${project.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>io.codejournal.jacocodemo</groupId>
+        <artifactId>maven-jacoco-multi-module-demo-strings</artifactId>
+        <version>${project.version}</version>
+    </dependency>
+</dependencies>
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.7</version>
+            <executions>
+                <execution>
+                    <id>jacoco-report-aggregate</id>
+                    <phase>verify</phase>
+                    <goals>
+                        <goal>report-aggregate</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+```
+
+And then when you run the whole build, you can see the reports getting generated.
+
+{{< rawhtml >}}
+<pre class="code-output">
+[INFO] --- jacoco-maven-plugin:0.8.7:report-aggregate (jacoco-report-aggregate) @ maven-jacoco-multi-module-demo-reports ---
+[INFO] Loading execution data file /home/codejournal/workspace/maven-jacoco-multi-module-demo/maven-jacoco-multi-module-demo-numbers/target/jacoco.exec
+[INFO] Loading execution data file /home/codejournal/workspace/maven-jacoco-multi-module-demo/maven-jacoco-multi-module-demo-strings/target/jacoco.exec
+[INFO] Analyzed bundle 'maven-jacoco-multi-module-demo-numbers' with 1 classes
+[INFO] Analyzed bundle 'maven-jacoco-multi-module-demo-strings' with 1 classes
+</pre>
+{{< /rawhtml >}}
+
+Additional configuration option for this goal can be [found here](https://www.jacoco.org/jacoco/trunk/doc/report-aggregate-mojo.html).
+
+
+
+
+
+## JaCoCo Goal - check
+
+This goal is generally used with multi-module Maven projects. The report is created from all modules this project depends on. From those projects class and source files as well as JaCoCo execution data files will be collected. In addition execution data is collected from the project itself. This also allows to create coverage reports when tests are in separate projects than the code under test, for example in case of integration tests.
+
+
+
+
+
+## JaCoCo Goal - dump
+
+
+## JaCoCo Goal - instrument
+
+## JaCoCo Goal - restore-instrumented-classes
+
+
+
+
+
+
+
+
+
+
+
+{{< articlead >}}
+
 
 
 

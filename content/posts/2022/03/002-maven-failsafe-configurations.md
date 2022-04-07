@@ -1,5 +1,5 @@
 ---
-date: 2022-03-14
+date: 2022-03-24
 linktitle: Integration Testing in Maven - Failsafe Configurations
 next: /2020/08/install-apache-maven-on-linux/
 prev: /2022/03/unit-testing-in-maven-surefire-configurations/
