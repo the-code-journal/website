@@ -16,7 +16,7 @@ In this article, we will be taking a look at how to generate code coverage data 
 
 Here is video for the same.
 
-{{< yt "https://www.youtube.com/embed/wEr_SXkWZ24" >}}
+{{< yt "https://www.youtube.com/embed/yqfvoEG4l5U" >}}
 
 
 

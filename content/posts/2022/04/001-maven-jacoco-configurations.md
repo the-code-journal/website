@@ -16,7 +16,7 @@ Now, there are multiple tools available to help you measure the code coverage fo
 
 Here is video for the same.
 
-{{< yt "https://www.youtube.com/embed/wEr_SXkWZ24" >}}
+{{< yt "https://www.youtube.com/embed/HAICxYCd2kY" >}}
 
 
 
@@ -309,6 +309,10 @@ For instance, if you define `argLine` property of [Maven Surefire Plugin][11], t
 
 In most cases, you won't be needing any additional configuration, however, there are [configuration properties][13] available that you can use if your need them. Check the [documentation here][13] to find all of them.
 
+Here is the video that discussed these [configuration properties][13] in detail.
+
+{{< yt "https://www.youtube.com/embed/DcALzi1YBzw" >}}
+
 
 
 
@@ -361,7 +365,7 @@ I have a [dedicated article on report goal][16] that you can check as well. Belo
 
 Here is the video that demonstrates usage of the [`report`][16] goal.
 
-{{< yt "https://www.youtube.com/embed/wEr_SXkWZ24" >}}
+{{< yt "https://www.youtube.com/embed/DHmi79tSZzM" >}}
 
 
 
@@ -383,7 +387,7 @@ If you generate multiple JaCoCo coverage files with your build, and want to comb
 
 Here is the video that demonstrates the `merge` goal.
 
-{{< yt "https://www.youtube.com/embed/wEr_SXkWZ24" >}}
+{{< yt "https://www.youtube.com/embed/49lJBfjB3Po" >}}
 
 
 
@@ -395,7 +399,7 @@ Here is the video that demonstrates the `merge` goal.
 
 I have a [dedicated article on report-aggregate goal][20] that you can check as well. Here is the video that demonstrates the `report-aggregate` goal in detail.
 
-{{< yt "https://www.youtube.com/embed/wEr_SXkWZ24" >}}
+{{< yt "https://www.youtube.com/embed/0zuT1bVAj2s" >}}
 
 
 
@@ -449,7 +453,7 @@ Here is an example, which configures a basic rule that your project needs to hav
 
 Here is the video that demonstrates the [`check`][21] goal in detail.
 
-{{< yt "https://www.youtube.com/embed/wEr_SXkWZ24" >}}
+{{< yt "https://www.youtube.com/embed/5mJ1hJGIguw" >}}
 
 
 
@@ -465,7 +469,7 @@ Here is the video that demonstrates the [`check`][21] goal in detail.
 
 I have an [article that demonstrates the dump goal][22] of a Spring Boot application and generation of report from the coverage dump. Here is the video for the same as well.
 
-{{< yt "https://www.youtube.com/embed/wEr_SXkWZ24" >}}
+{{< yt "https://www.youtube.com/embed/yqfvoEG4l5U" >}}
 
 
 
